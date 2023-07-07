@@ -1,11 +1,22 @@
+let bodies = []; // Array of all bodies currently present in the canvas
+const G =  0.00000000006673; // Gravitational constant, used in calculation of force
+
 // Setting up canvas
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-// Change canvas to use cartesian coordinate system
-ctx.translate(canvas.width/2, canvas.height/2);
 
-let bodies = []; // Array of all bodies currently present in the canvas
-const G =  0.00000000006673; // Gravitational constant, used in calculation of force
+function resizeCanvas() {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    console.log(canvas.height, canvas.width);
+    // Change canvas to use cartesian coordinate system
+    ctx.translate(canvas.width/2, canvas.height/2);
+    for (let body of bodies) {
+        body.draw();
+    }
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 class Body {
     constructor (radius, mass, colour, x, y, vX, vY, aX, aY, forceX, forceY) { 
@@ -72,4 +83,8 @@ class Body {
     }
 }
 
-body1 = new Body(100, 100, "red", 0, 0, 0, 0, 0, 0, 0, 0);
+body1 = new Body(50, 100, "red", 0, 0, 0, 0, 0, 0, 0, 0);
+bodies.push(body1);
+
+body2 = new Body (50, 100, "blue", 400, 400, 0, 0, 0, 0, 0, 0);
+bodies.push(body2);
