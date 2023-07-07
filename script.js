@@ -20,7 +20,7 @@ class Body {
         this.aY = aY;
         this.forceX = forceX;
         this.forceY = forceY;
-        
+
         this.draw();
     }
 
@@ -65,9 +65,11 @@ class Body {
 
     draw() {
         ctx.beginPath();
-            ctx.strokeStyle = colour;
-            ctx.fillStyle = colour;
+            ctx.fillStyle = this.colour;
             ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+            ctx.fill();
         ctx.closePath();
     }
 }
+
+body1 = new Body(100, 100, "red", 0, 0, 0, 0, 0, 0, 0, 0);
