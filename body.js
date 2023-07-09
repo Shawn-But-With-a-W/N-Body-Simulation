@@ -1,3 +1,5 @@
+const G =  0.00000000006673; // Gravitational constant, used in calculation of force
+
 class Body {
     constructor (radius, mass, colour, x, y, vX, vY, aX, aY, fX, fY) { 
         this.radius = radius;
@@ -69,5 +71,10 @@ class Body {
         this.newX += this.vX;
         this.newY += this.vY;
         console.log(`Position: ${this.newX}, ${this.newY}`)
+    }
+
+    updateCalcPosition() {
+        this.x = this.newX;
+        this.y = this.newY;
     }
 }

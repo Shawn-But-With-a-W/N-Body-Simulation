@@ -1,5 +1,4 @@
 let bodies = []; // Array of all bodies currently present in the canvas
-const G =  0.00000000006673; // Gravitational constant, used in calculation of force
 
 // Setting up canvas
 let canvas = document.getElementById("canvas");
@@ -23,11 +22,12 @@ window.addEventListener("resize", resizeCanvas);
 
 let interval = setInterval(update, 10);
 
-body1 = new Body(50, Math.pow(10, 15), "red", -200, -200, 7, 0, 0, 0, 0, 0);
-bodies.push(body1);
+body1 = new Body(50, Math.pow(10, 15), "red", -150, -150, 15, 0, 0, 0, 0, 0);
+body2 = new Body (50, Math.pow(10, 15), "blue", 150, 150, -15, 0, 0, 0, 0, 0);
+body3 = new Body (50, Math.pow(10, 15), "green", 150, -150, 0, 15, 0, 0, 0, 0);
+body4 = new Body (50, Math.pow(10, 15), "yellow", -150, 150, 0, -15, 0, 0, 0, 0);
 
-body2 = new Body (50, Math.pow(10, 15), "blue", 200, 200, -7, 0, 0, 0, 0, 0);
-bodies.push(body2);
+bodies = [body4, body3, body2, body1];
 
 function update() {
     // Draw a rectangle over the entire canvas
@@ -39,12 +39,11 @@ function update() {
         body.updateAcceleration();
         body.updateVelcoity();
         body.updatePosition();
-        body.draw()
+        body.draw();
     }
 
     // Change the previous and current position values to be identical, separately to not intefere with calculating force (which is based on distance)
     for (let body of bodies) {
-        body.x = body.newX;
-        body.y = body.newY;
+        body.updateCalcPosition();
     }
 }
