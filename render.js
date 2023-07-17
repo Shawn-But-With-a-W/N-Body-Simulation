@@ -1,24 +1,36 @@
-let bodies = []; // Array of all bodies currently present in the canvas
-
 // Setting up canvas
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
+
+let bodies = []; // Array of all bodies currently present in the canvas
+
+let zoomLevel = 1; // Zoom level to be used for canvas
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 function resizeCanvas() {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
     // Change canvas to cartesian standards
     ctx.translate(canvas.width/2, canvas.height/2);
-    ctx.scale(1, -1);
-
+    ctx.scale(zoomLevel, -zoomLevel);
+    // Draw a rectangle over the entire canvas
+    ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
     // Redraw everything
     for (let body of bodies) {
         body.draw();
     }
 }
 
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+document.addEventListener("wheel", zoom);
+
+function zoom(event) {
+    zoomLevel += event.deltaY * -0.002;
+    zoomLevel = Math.min(Math.max(0.01, zoomLevel), 10);
+    console.log(zoomLevel);
+    resizeCanvas(); // Just being lazy
+}
 
 
 let interval = setInterval(update, 1);
