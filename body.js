@@ -1,7 +1,8 @@
 const G =  0.00000000006673; // Gravitational constant, used in calculation of force
+let t = 0.2
 
 class Body {
-    constructor (radius, mass, colour, x, y, vX, vY, aX, aY, fX, fY) { 
+    constructor (radius, mass, colour, x, y, vX, vY) {
         this.radius = radius;
         this.mass = mass; 
         this.colour = colour; // Yes I am spelling it as 'colour'
@@ -9,10 +10,7 @@ class Body {
         this.y = this.newY = y; // newX and newY are used for drawing the body, x and y are used for calculations
         this.vX = vX;
         this.vY = vY;
-        this.aX = aX;
-        this.aY = aY;
-        this.fX = fX;
-        this.fY = fY;
+        this.aX = this.aY = this.fX = this.fY = 0;
         
         this.draw();
     }
@@ -61,15 +59,15 @@ class Body {
     }
 
     updateVelcoity() {
-        this.vX += this.aX;
-        this.vY += this.aY;
+        this.vX += this.aX * t;
+        this.vY += this.aY * t;
         console.log(`Velocity: ${this.vX}, ${this.vY}`)
 
     }
 
     updatePosition() {
-        this.newX += this.vX;
-        this.newY += this.vY;
+        this.newX += this.vX * t;
+        this.newY += this.vY * t;
         console.log(`Position: ${this.newX}, ${this.newY}`)
     }
 
