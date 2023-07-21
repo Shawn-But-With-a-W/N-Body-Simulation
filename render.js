@@ -1,3 +1,5 @@
+// TO DO: FIX CLEAR RECT NOT WORKING ON EDGE OF CANVAS
+
 // Setting up canvas
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
@@ -5,6 +7,7 @@ let ctx = canvas.getContext("2d");
 let bodies = []; // Array of all bodies currently present in the canvas
 
 let zoomLevel = 1; // Zoom level to be used for canvas
+let translate = {x:0, y:0};
 
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
@@ -13,10 +16,11 @@ function resizeCanvas() {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
     // Change canvas to cartesian standards
-    ctx.translate(canvas.width/2, canvas.height/2);
+    ctx.translate(canvas.width/2 + translate.x, canvas.height/2 + translate.y);
     ctx.scale(zoomLevel, -zoomLevel);
     // Draw a rectangle over the entire canvas
-    ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(-canvas.width/2 + translate.x, -canvas.height/2 + translate.y, canvas.width, canvas.height);
     // Redraw everything
     for (let body of bodies) {
         body.draw();
@@ -32,6 +36,17 @@ function zoom(event) {
     resizeCanvas(); // Just being lazy
 }
 
+document.addEventListener("mousemove", pan);
+
+function pan(event) {
+    if (event.ctrlKey) {
+        translate.x += event.movementX;
+        translate.y += event.movementY;
+        console.log(translate);
+        resizeCanvas(); // Being lazy again, probably should make a proper function for this stuff
+    }
+}
+
 
 let interval = setInterval(update, 1);
 
@@ -42,7 +57,7 @@ bodies = [body1, body2];
 
 function update() {
     // Draw a rectangle over the entire canvas
-    ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
+    ctx.clearRect(-canvas.width/2 + translate.x, -canvas.height/2 + translate.y, canvas.width + translate.x, canvas.height + translate.y);
     
     // Update values and redraw the bodies
     for (let body of bodies) {
