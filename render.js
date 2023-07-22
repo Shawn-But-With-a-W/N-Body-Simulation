@@ -41,10 +41,10 @@ function pan(event) {
 
 let interval = setInterval(update, 1);
 
-// pos and Newpos are always equal, causing problems
-let body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x:-150, y:-150}, {x: 15, y:-15});
-let body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:150, y:150}, {x:-15, y:15});
-let body3 = new Body(50, Math.pow(10, 15), "green", {x:0, y:0}, {x:0, y:0}, {x:0, y:0});
+// pos and Newpos are always equal, due to pass by reference
+const body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x: 15, y:-15});
+const body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:-15, y:15});
+const body3 = new Body(50, Math.pow(10, 15), "green", {x:0, y:0}, {x:0, y:0});
 
 
 function update() {

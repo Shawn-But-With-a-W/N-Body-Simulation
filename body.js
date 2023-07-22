@@ -4,13 +4,15 @@ let softening = 100; // Used to prevent the denominator in GMm/r^2 from going to
 let bodies = []; // Array of all bodies present
 
 class Body {
-    constructor (radius, mass, colour, pos, newPos, vel) {
+    constructor (radius, mass, colour, pos, vel) {
         this.radius = radius; // (m)
         this.mass = mass; // (kg)
-        this.colour = colour; // Yes I am spelling it as 'colour'
+        // Yes I am spelling it as 'colour'
+        this.colour = colour; 
         // newPos is used for drawing the body, pos is used for calculations
-        this.pos = pos;
-        this.newPos = newPos; // (m)
+        this.pos = pos; // (m)
+        // Assign this with number values (primitive type) as it would be pass by reference if this.pos = this.newPos (objects), resulting in pos and newPos always being the same
+        this.newPos = {x:pos.x, y:pos.y}; 
         this.vel = vel; // (m/s)
         this.acc = {x:0, y:0}; // (m/s^2)
         this.force = {x:0, y:0}
