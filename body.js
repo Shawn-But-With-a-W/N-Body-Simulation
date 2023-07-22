@@ -1,5 +1,6 @@
 const G =  0.0000000000667428; // Gravitational constant, used in calculation of force
 let t = 0.5;
+let softening = 100; // Used to prevent the denominator in GMm/r^2 from going to 0 and producing infinite force
 let bodies = []; // Array of all bodies present
 
 class Body {
@@ -34,7 +35,7 @@ class Body {
             // Gravitational force only applied by bodies other than the current body itself
             if (body != this) {
                 // Finding the magnitude and angle from horizontal
-                let force = (G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2);
+                let force = (G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2) + softening;
                 let theta = Math.atan(Math.abs((this.pos.y - body.pos.y) / (this.pos.x - body.pos.x)));
 
                 // Decomposing into x and y components and adding to the final force vector
