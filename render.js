@@ -41,10 +41,11 @@ function pan(event) {
 
 let interval = setInterval(update, 1);
 
-// pos and Newpos are always equal, due to pass by reference
-const body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x: 15, y:-15});
-const body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:-15, y:15});
-const body3 = new Body(50, Math.pow(10, 15), "green", {x:0, y:0}, {x:0, y:0});
+// Still doesn't quite work, order matters, figure out why
+const body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x: 15, y:0});
+const body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:-15, y:0});
+const body3 = new Body(50, Math.pow(10, 15), "green", {x:150, y:-150}, {x:0, y:15});
+const body4 = new Body(50, Math.pow(10, 15), "yellow", {x:-150, y:150}, {x:0, y:-15});
 
 
 function update() {
@@ -59,7 +60,7 @@ function update() {
         body.draw();
     }
 
-    // Change the previous and current position values to be identical, separately to not intefere with calculating force (which is based on distance)
+    // Change the previous and current position values to be identical after the force calculation (which is based on distance, and by extension position) to not intefere 
     for (let body of bodies) {
         body.updateCalcPos();
 
@@ -90,6 +91,16 @@ function update() {
                 velocity: ${body3.vel.x}, ${body3.vel.y}
                 new position: ${body3.newPos.x}, ${body3.newPos.y}
                 position: ${body3.pos.x}, ${body3.pos.y}
+            `;
+        }
+
+        else if (body == body4) {
+            document.getElementById("body4").innerText = `
+                force: ${body4.force.x}, ${body4.force.y}
+                acceleration: ${body4.acc.x}, ${body4.acc.y}
+                velocity: ${body4.vel.x}, ${body4.vel.y}
+                new position: ${body4.newPos.x}, ${body4.newPos.y}
+                position: ${body4.pos.x}, ${body4.pos.y}
             `;
         }
     }
