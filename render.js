@@ -19,8 +19,7 @@ function resizeCanvas() {
     ctx.translate(canvas.width/2 + translate.x, canvas.height/2 + translate.y);
     ctx.scale(zoomLevel, -zoomLevel);
     // Draw a rectangle over the entire canvas
-    ctx.fillStyle = 'white';
-    ctx.fillRect(-canvas.width/2 + translate.x, -canvas.height/2 + translate.y, canvas.width, canvas.height);
+    ctx.clearRect((-canvas.width/2 - translate.x) / zoomLevel, (-canvas.height/2 + translate.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
     // Redraw everything
     for (let body of bodies) {
         body.draw();
@@ -52,12 +51,13 @@ let interval = setInterval(update, 1);
 
 let body1 = new Body(50, Math.pow(10, 15), "red", -150, -150, 5, -5);
 let body2 = new Body(50, Math.pow(10, 15), "blue", 150, 150, -5, 5);
+let body3 = new Body(50, Math.pow(10, 15), "green", 500, 500, -5, 5);
 
-bodies = [body1, body2];
+bodies = [body1, body2, body3];
 
 function update() {
     // Draw a rectangle over the entire canvas
-    ctx.clearRect(-canvas.width/2 + translate.x, -canvas.height/2 + translate.y, canvas.width + translate.x, canvas.height + translate.y);
+    ctx.clearRect((-canvas.width/2 - translate.x) / zoomLevel, (-canvas.height/2 + translate.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
     
     // Update values and redraw the bodies
     for (let body of bodies) {
