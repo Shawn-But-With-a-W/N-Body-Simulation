@@ -1,16 +1,14 @@
-// TO DO: FIX CLEAR RECT NOT WORKING ON EDGE OF CANVAS
-
 // Setting up canvas
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
 let zoomLevel = 1; // Zoom level to be used for canvas
-let translate = {x:0, y:0};
+let translate = {x:0, y:0}; // How much the canvas is shifted by
 
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+refreshCanvas();
+window.addEventListener("resize", refreshCanvas);
 
-function resizeCanvas() {
+function refreshCanvas() {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
     // Change canvas to cartesian standards
@@ -31,7 +29,7 @@ function zoom(event) {
     zoomLevel += event.deltaY * -0.002;
     zoomLevel = Math.min(Math.max(0.01, zoomLevel), 10);
     console.log(zoomLevel);
-    resizeCanvas(); // Just being lazy
+    refreshCanvas();
 }
 
 document.addEventListener("mousemove", pan);
@@ -41,7 +39,7 @@ function pan(event) {
         translate.x += event.movementX;
         translate.y += event.movementY;
         console.log(translate);
-        resizeCanvas(); // Being lazy again, probably should make a proper function for this stuff
+        refreshCanvas();
     }
 }
 
@@ -52,9 +50,8 @@ let body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:7, y:-7});
 let body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x:-7, y:7});
 
 function update() {
-    // Draw a rectangle over the entire canvas
-    ctx.clearRect((-canvas.width/2 - translate.x) / zoomLevel, (-canvas.height/2 + translate.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
-    
+    refreshCanvas();
+
     // Update values and redraw the bodies
     for (let body of bodies) {
         body.updateForce();
