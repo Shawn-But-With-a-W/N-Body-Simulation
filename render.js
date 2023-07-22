@@ -41,10 +41,10 @@ function pan(event) {
 
 let interval = setInterval(update, 1);
 
-// Seems to be some sort of priority going on TODO investigate
-let body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x:25, y:0});
-let body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:-25, y:0});
-let body3 = new Body(50, Math.pow(10, 15), "green", {x:0, y:0}, {x:0, y:0});
+// pos and Newpos are always equal, causing problems
+let body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x:-150, y:-150}, {x: 15, y:-15});
+let body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:150, y:150}, {x:-15, y:15});
+let body3 = new Body(50, Math.pow(10, 15), "green", {x:0, y:0}, {x:0, y:0}, {x:0, y:0});
 
 
 function update() {
@@ -80,6 +80,16 @@ function update() {
                 velocity: ${body2.vel.x}, ${body2.vel.y}
                 new position: ${body2.newPos.x}, ${body2.newPos.y}
                 position: ${body2.pos.x}, ${body2.pos.y}
+            `;
+        }
+
+        else if (body == body3) {
+            document.getElementById("body3").innerText = `
+                force: ${body3.force.x}, ${body3.force.y}
+                acceleration: ${body3.acc.x}, ${body3.acc.y}
+                velocity: ${body3.vel.x}, ${body3.vel.y}
+                new position: ${body3.newPos.x}, ${body3.newPos.y}
+                position: ${body3.pos.x}, ${body3.pos.y}
             `;
         }
     }

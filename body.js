@@ -4,19 +4,19 @@ let softening = 100; // Used to prevent the denominator in GMm/r^2 from going to
 let bodies = []; // Array of all bodies present
 
 class Body {
-    constructor (radius, mass, colour, pos, vel) {
+    constructor (radius, mass, colour, pos, newPos, vel) {
         this.radius = radius; // (m)
         this.mass = mass; // (kg)
         this.colour = colour; // Yes I am spelling it as 'colour'
         // newPos is used for drawing the body, pos is used for calculations
-        this.pos = pos; // (m)
-        this.newPos = pos;
+        this.pos = pos;
+        this.newPos = newPos; // (m)
         this.vel = vel; // (m/s)
         this.acc = {x:0, y:0}; // (m/s^2)
         this.force = {x:0, y:0}
 
-        this.draw();
         bodies.push(this);
+        this.draw();
     }
 
     draw() {
@@ -35,7 +35,7 @@ class Body {
             // Gravitational force only applied by bodies other than the current body itself
             if (body != this) {
                 // Finding the magnitude and angle from horizontal
-                let force = (G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2) + softening;
+                let force = (G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2 + softening);
                 let theta = Math.atan(Math.abs((this.pos.y - body.pos.y) / (this.pos.x - body.pos.x)));
 
                 // Decomposing into x and y components and adding to the final force vector
