@@ -5,7 +5,7 @@ let ctx = canvas.getContext("2d");
 let zoomLevel = 1; // Zoom level to be used for canvas
 let translate = {x:0, y:0}; // How much the canvas is shifted by
 
-refreshCanvas();
+
 window.addEventListener("resize", refreshCanvas);
 
 function refreshCanvas() {
@@ -17,10 +17,6 @@ function refreshCanvas() {
 
     // Draw a rectangle over the entire canvas
     ctx.clearRect((-canvas.width/2 - translate.x) / zoomLevel, (-canvas.height/2 + translate.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
-    // Redraw everything
-    for (let body of bodies) {
-        body.draw();
-    }
 }
 
 document.addEventListener("wheel", zoom);
@@ -29,7 +25,6 @@ function zoom(event) {
     zoomLevel += event.deltaY * -0.002;
     zoomLevel = Math.min(Math.max(0.01, zoomLevel), 10);
     console.log(zoomLevel);
-    refreshCanvas();
 }
 
 document.addEventListener("mousemove", pan);
@@ -39,7 +34,6 @@ function pan(event) {
         translate.x += event.movementX;
         translate.y += event.movementY;
         console.log(translate);
-        refreshCanvas();
     }
 }
 
