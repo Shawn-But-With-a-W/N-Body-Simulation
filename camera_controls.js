@@ -20,20 +20,18 @@ function refreshCanvas() {
     ctx.clearRect(-(canvas.width/2 + translate.x) / zoomLevel, -(canvas.height/2 +  translate.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
 }
 
-document.addEventListener("wheel", zoom);
+canvas.addEventListener("wheel", zoom);
 
 function zoom(event) {
     zoomLevel += event.deltaY * -0.002;
     zoomLevel = Math.min(Math.max(0.01, zoomLevel), 10); // Add a maximum and minimum value to the zoom
-    console.log(zoomLevel);
 }
 
-document.addEventListener("mousemove", pan);
+canvas.addEventListener("mousemove", pan);
 
 function pan(event) {
     if (event.ctrlKey) {
         translate.x += event.movementX;
         translate.y -= event.movementY; // y is defined as positive if mouse moves downwards, not upwards
-        console.log(translate);
     }
 }
