@@ -1,7 +1,6 @@
 // Setting up canvas
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-
 let zoomLevel = 1; // Zoom level to be used for canvas
 let translateLevel = {x:0, y:0}; // How much the canvas is shifted by in canvas coordinates
 
@@ -21,12 +20,14 @@ function refreshCanvas() {
     ctx.clearRect(-(canvas.width/2 + translateLevel.x) / zoomLevel, -(canvas.height/2 - translateLevel.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
 }
 
+
 canvas.addEventListener("wheel", zoom);
 
 function zoom(event) {
     zoomLevel += event.deltaY * -0.002;
     zoomLevel = Math.min(Math.max(0.01, zoomLevel), 10); // Add a maximum and minimum value to the zoom
 }
+
 
 canvas.addEventListener("mousemove", pan);
 
