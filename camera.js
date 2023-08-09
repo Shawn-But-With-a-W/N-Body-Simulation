@@ -19,16 +19,17 @@ function resizeCanvas() {
 canvas.addEventListener("wheel", zoom);
 
 function zoom(event) {
-    zoomLevel += event.deltaY * -0.002;
-    zoomLevel = Math.min(Math.max(0.01, zoomLevel), 10); // Add a maximum and minimum value to the zoom
+    zoomLevel += event.deltaY * -0.0005;
+    zoomLevel = Math.min(Math.max(0.025, zoomLevel), 10); // Add a maximum and minimum value to the zoom
     resizeCanvas();
+    update();
 }
 
 
 canvas.addEventListener("mousemove", pan);
 
 function pan(event) {
-    if (event.ctrlKey) {
+    if (event.shiftKey) {
         translateLevel.x += event.movementX;
         translateLevel.y += event.movementY;
         resizeCanvas();
