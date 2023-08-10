@@ -1,6 +1,6 @@
 const G =  0.0000000000667428; // Gravitational constant, used in calculation of force
 let t = 0.5;
-let softening = 200; // Used to prevent the denominator in GMm/r^2 from going to 0 and producing infinite force
+let softening = 500; // Used to prevent the denominator in GMm/r^2 from going to 0 and producing infinite force
 let bodies = []; // Array of all bodies present
 
 class Body {
