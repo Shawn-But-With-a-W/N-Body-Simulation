@@ -1,16 +1,20 @@
-let trailLength = 5;
+let trailLength = 4;
 let canvasOpacity = 1 / trailLength;
 
 let interval = setInterval(update, 10);
 
 // Still doesn't quite work, order matters, can't figure out why
-const body1 = new Body(50, Math.pow(10, 15), "red", {x:-150, y:-150}, {x: 15, y:0});
-const body2 = new Body(50, Math.pow(10, 15), "blue", {x:150, y:150}, {x:-15, y:0});
-const body3 = new Body(50, Math.pow(10, 15), "green", {x:150, y:-150}, {x:0, y:15});
-const body4 = new Body(50, Math.pow(10, 15), "yellow", {x:-150, y:150}, {x:0, y:-15});
+// const body1 = new Body(100, Math.pow(10, 15), "red", {x:-150, y:-150}, {x: 20, y:0});
+// const body2 = new Body(100, Math.pow(10, 15), "blue", {x:150, y:150}, {x:-20, y:0});
+// const body3 = new Body(100, Math.pow(10, 15), "green", {x:150, y:-150}, {x:0, y:20});
+// const body4 = new Body(100, Math.pow(10, 15), "yellow", {x:-150, y:150}, {x:0, y:-20});
 
 function update() {
-    refreshCanvas();
+    ctx.globalAlpha = canvasOpacity;
+    ctx.fillStyle = "black";
+    // Draw a rectangle over the entire canvas
+    ctx.fillRect(-(canvas.width/2 + translateLevel.x) / zoomLevel, -(canvas.height/2 - translateLevel.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
+    ctx.globalAlpha = 1;
 
     // Update values and redraw the bodies
     for (let body of bodies) {
@@ -19,11 +23,6 @@ function update() {
         body.updateVel();
         body.updatePos();
         body.draw();
-    }
-
-    // Change the previous and current position values to be identical after the force calculation (which is based on distance, and by extension position) to not intefere 
-    for (let body of bodies) {
-        body.updateCalcPos();
 
         // if (body == body1) {
         //     document.getElementById("body1").innerText = `
@@ -65,12 +64,9 @@ function update() {
         //     `;
         // }
     }
-}
 
-function refreshCanvas() {
-    ctx.globalAlpha = canvasOpacity;
-    ctx.fillStyle = "black";
-    // Draw a rectangle over the entire canvas
-    ctx.fillRect(-(canvas.width/2 + translateLevel.x) / zoomLevel, -(canvas.height/2 - translateLevel.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
-    ctx.globalAlpha = 1;
+    // Change the previous and current position values to be identical after the force calculation (which is based on distance, and by extension position) to not intefere 
+    for (let body of bodies) {
+        body.updateCalcPos();
+    }
 }

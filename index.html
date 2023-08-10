@@ -6,7 +6,7 @@
     <title>Orbital Simulation</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='input.js' defer></script>
+    <script src='settings.js' defer></script>
     <script src='calc.js' defer></script>
     <script src='camera.js' defer></script>
     <script src='body.js' defer></script>
@@ -21,21 +21,59 @@
     <h1 id="body3"></h1>
     <h1 id="body4"></h1>
     <div id="input-panel">
-        <button>Add body</button>
-        <input type="range" min="1" max="100" value="50" class="slider" id="radius">
-        <input type="range" min="1" max="100" value="50" class="slider" id="mass">
-        <input id="colour-hex">
-        <input id="x-pos">
-        <input id="y-pos">
-        <input id="x-vel">
-        <input id="y-vel">
+        <div class="input-separator">
+            <p class="label">Radius</p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="radius-slider">
+            <input class="slider-num" id="radius-num">
+        </div>
+
+        <div class="input-separator">
+            <p class="label">Mass</p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider">
+            <input class="slider-num" id="mass-num">
+        </div>
+
+        <div class="input-separator">
+            <p class="label">Colour</p>
+            <input id="colour-hex">
+        </div>
+
+        <div class="input-separator">
+            <p class="label">X-Coord</p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="x-pos-slider">
+            <input class="slider-num" id="x-pos-num">
+        </div>
+
+        <div class="input-separator">
+            <p class="label">Y-Coord</p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="y-pos-slider">
+            <input class="slider-num" id="y-pos-num">
+        </div>
+
+        <div class="input-separator">
+            <p class="label">X-Vel</p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="x-vel-slider">
+            <input class="slider-num" id="x-vel-num">
+        </div>
+
+        <div class="input-separator">
+            <p class="label">Y-Vel</p>
+            <input type="range" min="1" max="100" value="50" class="slider" id="y-vel-slider">
+            <input class="slider-num" id="y-vel-num">
+        </div>
+
+        <div class="button-separator">
+            <button>Add body</button>
+        </div>
     </div>
 </body>
 </html>
 
 <!-- 
     To Do List:
-    - Input panel
+    - Input panel (Make sure the slider handle doesn't squeeze everything else off when zooming in)
+    - Zoom relative to centre of viewport
+    - Cap maximum speed
     - Click and drag functionality
     - Focus on object
     - Velocity vector display

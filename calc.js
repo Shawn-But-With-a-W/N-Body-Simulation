@@ -1,14 +1,10 @@
-const G =  0.0000000000667428; // Gravitational constant, used in calculation of force
-let t = 0.5;
-let softening = 500; // Used to prevent the denominator in GMm/r^2 from going to 0 and producing infinite force
 let bodies = []; // Array of all bodies present
 
 class Body {
     constructor (radius, mass, colour, pos, vel) {
         this.radius = radius; // (m)
         this.mass = mass; // (kg)
-        // Yes I am spelling it as 'colour'
-        this.colour = colour; 
+        this.colour = colour;  // Yes I am spelling it as 'colour'
         // newPos is used for drawing the body, pos is used for calculations
         this.pos = pos; // (m)
         // Assign newPos with number values (primitive type) instead assigning an object, which would be pass by reference
@@ -37,7 +33,7 @@ class Body {
             // Gravitational force only applied by bodies other than the current body itself
             if (body != this) {
                 // Finding the magnitude and angle from horizontal
-                let force = (G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2 + softening);
+                let force = (settings.G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2 + settings.softening);
                 let theta = Math.atan(Math.abs((this.pos.y - body.pos.y) / (this.pos.x - body.pos.x)));
 
                 // Decomposing into x and y components and adding to the final force vector
@@ -63,13 +59,13 @@ class Body {
     }
 
     updateVel() {
-        this.vel.x += this.acc.x * t;
-        this.vel.y += this.acc.y * t;
+        this.vel.x += this.acc.x * settings.t;
+        this.vel.y += this.acc.y * settings.t;
     }
 
     updatePos() {
-        this.newPos.x += this.vel.x * t;
-        this.newPos.y += this.vel.y * t;
+        this.newPos.x += this.vel.x * settings.t;
+        this.newPos.y += this.vel.y * settings.t;
     }
 
     updateCalcPos() {
