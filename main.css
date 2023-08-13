@@ -43,23 +43,28 @@ canvas {
     display: inline-block;
 }
 
+/* Inputs */
+/* Breaks at higher zoom levels since the viewport dimensions are scuffed */
+
 #input-panel {
     display: block;
     position: fixed;
-    width: 20vw;
-    height: 60vh;
-    top: 20vh;
+    width: 25vw;
+    height: 80vh;
+    top: 10vh;
     right: 0;
     background-color: #24292e;
 }
 
 .input-separator {
     border: 0.1vh black solid;
-    height: 7vh;
+    height: 8vh;
 }
 
 .button-separator {
     text-align: center;
+    border: 0.1vh black solid;
+    height: 8vh;
 }
 
 p.label {
@@ -67,18 +72,56 @@ p.label {
     width: 5vw;
     text-align: left;
     margin: 0;
-    line-height: 7vh;
+    line-height: 8vh;
     font-size: 1vw;
     color: #e0e2e5;
 }
 
 input.slider {
+    -webkit-appearance: none;
+    appearance: none;
     width: 10vw;
-    height: 1vh;
+    height: 3vh;
+    outline: none;
+    background-color: #2f3032;
+    vertical-align: middle;
+    overflow: hidden;
 }
 
+input.slider::-moz-range-progress {
+    background-color: aqua; 
+    height: 3vh;
+}
+
+input.slider::-moz-range-track {  
+    background-color: #2f3032;
+    height: 3vh;
+}
+
+input.slider::-moz-range-thumb {
+    width: 0;
+    height: 0;
+    cursor: pointer;
+}
+
+input.slider::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    color: aqua;
+}
+
+input.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    box-shadow: -10vw 0 0 10vw #43e5f7;
+}
+  
+
 input.slider-num {
-    width: 3.5vw
+    width: 3.5vw;
+    margin-left: 4vw;
 }
 
 input {
@@ -87,4 +130,14 @@ input {
     text-align: center;
     height: 3vh;
     margin: 0;
+    border: none;
+}
+
+button {
+    display: inline-block;
+    height: 3vh;
+    width: 7vw;
+    font-size: 1vw;
+    border: none;
+    margin-top: 2.5vh;
 }
