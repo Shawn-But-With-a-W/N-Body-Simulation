@@ -9,13 +9,19 @@ let settings = {
     softening : 500, // Used to prevent the denominator in GMm/r^2 from going to 0 and producing infinite force
     trailLength : 4,
     intervalDelay : 10,
+    _pause : false,
 };
 
-// window.addEventListener("resize", resizePanel);
+document.getElementById("pause").addEventListener("click", pause);
 
-// function resizePanel() {
-//     document.getElementById("input-panel").style.height = `${window.innerHeight * 0.6}px`;
-//     document.getElementById("input-panel").style.width = `${window.innerWidth * 0.2}px`;
-//     document.getElementById("input-panel").style.top = `${window.innerHeight*0.2}px`;
-// }
+function pause() {
+    if (settings._pause) {
+        interval = setInterval(update, settings.intervalDelay);
+        settings._pause = false;
+    }
+    else {
+        clearInterval(interval);
+        settings._pause = true;
+    }
+}
 

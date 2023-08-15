@@ -1,11 +1,4 @@
-let trailLength = 4;
-let canvasOpacity = 1 / trailLength;
-let _pause = false;
-
 let interval = setInterval(update, settings.intervalDelay);
-
-// TODO: Implement pausing by clearInterval
-
 // Still doesn't quite work, order matters, can't figure out why
 // const body1 = new Body(100, Math.pow(10, 15), "red", {x:-150, y:-150}, {x: 20, y:0});
 // const body2 = new Body(100, Math.pow(10, 15), "blue", {x:150, y:150}, {x:-20, y:0});
@@ -13,22 +6,13 @@ let interval = setInterval(update, settings.intervalDelay);
 // const body4 = new Body(100, Math.pow(10, 15), "yellow", {x:-150, y:150}, {x:0, y:-20});
 
 function update() {
-    if (_pause) {
-        clearInterval(interval);
-        interval = false;
-    }
-    
-    if ((!_pause) && (!interval)) {
-        interval = setInterval(update, 10);
-    }
-
     refreshCanvas();
     calc();
 }
 
 
 function refreshCanvas() {
-    ctx.globalAlpha = canvasOpacity;
+    ctx.globalAlpha = 1 / settings.trailLength;
     ctx.fillStyle = "black";
     // Draw a rectangle over the entire canvas
     ctx.fillRect(-(canvas.width/2 + translateLevel.x) / zoomLevel, -(canvas.height/2 - translateLevel.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);

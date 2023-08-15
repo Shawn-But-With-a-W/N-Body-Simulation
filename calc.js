@@ -1,3 +1,4 @@
+// TODO: Change units for the calculations to fit input units (mainly the drawing on screen, pixel to km ratio)
 let bodies = []; // Array of all bodies present
 
 class Body {

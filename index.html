@@ -6,7 +6,7 @@
     <title>Orbital Simulation</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='settings.js' defer></script>
+    <script src='input.js' defer></script>
     <script src='calc.js' defer></script>
     <script src='camera.js' defer></script>
     <script src='body.js' defer></script>
@@ -16,14 +16,15 @@
 
 <body>    
     <canvas id="canvas" width="1920" height="1080">No canvas avaliable</canvas>
-    <h1 id="body1"></h1>
+    <!-- <h1 id="body1"></h1>
     <h1 id="body2"></h1>
     <h1 id="body3"></h1>
-    <h1 id="body4"></h1>
+    <h1 id="body4"></h1> -->
+    
     <div id="input-panel">
         <div id="body-settings">
             <div class="button-separator">
-                <button>Add body</button>
+                <button id="new-body">Add body</button>
             </div>
 
             <div class="input-separator">
@@ -78,12 +79,22 @@
         <div id="general-settings">
             <div class="input-separator">
                 <p class="label">Trail Length</p>
+                <input type="range" min="1" max="20" value="4" class="slider" id="trail-slider">
+                <input class="slider-num" id="trail-num">
             </div>
 
             <div class="input-separator">
-                <p class="label">Softening</p>
+                <p class="label">Time Step</p>
+                <input type="range" min="0.01" max="100" value="1" class="slider" id="t-slider">
+                <input class="slider-num" id="t-num">
+                <p class="unit">s</p>
+            </div>
+
+            <div class="button-separator">
+                <button id="pause">Pause</button>
             </div>
         </div>
+
 
         <div id="advanced-settings">
             <div class="input-separator">
@@ -109,10 +120,12 @@
 
 <!-- 
     TODO:
-    - Add all input fields and units and link to settings
+    - Link input fields to settings
+    - Make dropdown list for different types of settings
+    - Sort out scale with units in viewport
     - Zoom relative to centre of viewport
+    - Pause functionality
     - Cap maximum speed
-    - Sort out scale
     - Click and drag functionality
     - Focus on object
     - Velocity vector display

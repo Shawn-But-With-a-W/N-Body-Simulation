@@ -1,3 +1,4 @@
+// TODO: Make viewport controls work with pause and not move the bodies on screen
 // Setting up canvas
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
