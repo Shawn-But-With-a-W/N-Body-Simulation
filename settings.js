@@ -7,8 +7,9 @@ let settings = {
     G : 0.0000000000667428, // Gravitational constant, used in calculation of force
     t : 1, // Time interval between consecutive calculations
     softening : 500, // Used to prevent the denominator in GMm/r^2 from going to 0 and producing infinite force
-    trailLength : 4
-}
+    trailLength : 4,
+    intervalDelay : 10,
+};
 
 // window.addEventListener("resize", resizePanel);
 

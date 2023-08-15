@@ -21,57 +21,95 @@
     <h1 id="body3"></h1>
     <h1 id="body4"></h1>
     <div id="input-panel">
-        <div class="input-separator">
-            <p class="label">Radius</p>
-            <input type="range" min="1" max="100" value="50" class="slider" id="radius-slider">
-            <input class="slider-num" id="radius-num">
+        <div id="body-settings">
+            <div class="button-separator">
+                <button>Add body</button>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">Radius</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="radius-slider">
+                <input class="slider-num" id="radius-num">
+                <p class="unit">km</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">Mass</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider">
+                <input class="slider-num" id="mass-num">
+                <p class="unit">10^24 kg</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">Colour</p>
+                <input id="colour-hex">
+                <p class="unit">Hex</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">X-Coord</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="x-pos-slider">
+                <input class="slider-num" id="x-pos-num">
+                <p class="unit">km</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">Y-Coord</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="y-pos-slider">
+                <input class="slider-num" id="y-pos-num">
+                <p class="unit">km</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">X-Velocity</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="x-vel-slider">
+                <input class="slider-num" id="x-vel-num">
+                <p class="unit">km/s</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">Y-Velocity</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="y-vel-slider">
+                <input class="slider-num" id="y-vel-num">
+                <p class="unit">km/s</p>
+            </div>
+        </div>
+        
+        <div id="general-settings">
+            <div class="input-separator">
+                <p class="label">Trail Length</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">Softening</p>
+            </div>
         </div>
 
-        <div class="input-separator">
-            <p class="label">Mass</p>
-            <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider">
-            <input class="slider-num" id="mass-num">
-        </div>
+        <div id="advanced-settings">
+            <div class="input-separator">
+                <p class="label">G</p>
+                <input id="G" value="0.0000000000667428">
+                <p class="unit" id="G-unit">m^3 kg^-2 s^-2</p>
+            </div>
+            <div class="input-separator">
+                <p class="label">Softening Constant</p>
+                <input type="range" min="1" max="100" value="50" class="slider" id="softening-slider">
+                <input class="slider-num" id="softening-num">
+            </div>
 
-        <div class="input-separator">
-            <p class="label">Colour</p>
-            <input id="colour-hex">
-        </div>
-
-        <div class="input-separator">
-            <p class="label">X-Coord</p>
-            <input type="range" min="1" max="100" value="50" class="slider" id="x-pos-slider">
-            <input class="slider-num" id="x-pos-num">
-        </div>
-
-        <div class="input-separator">
-            <p class="label">Y-Coord</p>
-            <input type="range" min="1" max="100" value="50" class="slider" id="y-pos-slider">
-            <input class="slider-num" id="y-pos-num">
-        </div>
-
-        <div class="input-separator">
-            <p class="label">X-Vel</p>
-            <input type="range" min="1" max="100" value="50" class="slider" id="x-vel-slider">
-            <input class="slider-num" id="x-vel-num">
-        </div>
-
-        <div class="input-separator">
-            <p class="label">Y-Vel</p>
-            <input type="range" min="1" max="100" value="50" class="slider" id="y-vel-slider">
-            <input class="slider-num" id="y-vel-num">
-        </div>
-
-        <div class="button-separator">
-            <button>Add body</button>
+            <div class="input-separator">
+                <p class="label">Interval Delay</p>
+                <input type="range" min="1" max="100" value="10" class="slider" id="interval-slider">
+                <input class="slider-num" id="interval-num">
+            </div>
         </div>
     </div>
 </body>
 </html>
 
 <!-- 
-    To Do List:
-    - Input panel (Make sure the slider handle doesn't squeeze everything else off when zooming in)
+    TODO:
+    - Add all input fields and units and link to settings
     - Zoom relative to centre of viewport
     - Cap maximum speed
     - Sort out scale

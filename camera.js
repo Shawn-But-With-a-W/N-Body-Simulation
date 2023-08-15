@@ -29,7 +29,7 @@ function zoom(event) {
 canvas.addEventListener("mousemove", pan);
 
 function pan(event) {
-    if (event.shiftKey) {
+    if (event.ctrlKey) {
         translateLevel.x += event.movementX;
         translateLevel.y += event.movementY;
         resizeCanvas();

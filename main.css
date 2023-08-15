@@ -49,54 +49,70 @@ canvas {
 #input-panel {
     display: block;
     position: fixed;
-    width: 25vw;
-    height: 80vh;
-    top: 10vh;
+    width: fit-content;
+    height: fit-content;
+    top: 5vh; /* *Change this later to be a dropdown*/
     right: 0;
     background-color: #24292e;
 }
 
 .input-separator {
     border: 0.1vh black solid;
-    height: 8vh;
+    height: fit-content;
+    padding: 1vh 0;
 }
 
 .button-separator {
     text-align: center;
+    height: fit-content;
     border: 0.1vh black solid;
-    height: 8vh;
+    padding: 1vh 0;
+}
+
+p {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1vw;
+    color: #e0e2e5;
+    font-weight: 550;
 }
 
 p.label {
-    display: inline-block;
-    width: 5vw;
+    width: 6vw;
     text-align: left;
     margin: 0;
     margin-left: 0.5vw;
-    line-height: 8vh;
-    font-size: 1vw;
-    color: #e0e2e5;
+}
+
+p.unit {
+    width: 5vw;
+    text-align: right;
+    margin: 0;
+    margin-right: 0.5vw; /* TODO: See if the units look better right aligned or left */
+}
+
+#G-unit {
+    font-size: 0.65vw;
+    font-weight: 650;
 }
 
 input.slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 10vw;
-    height: 3vh;
+    width: 12vw;
     outline: none;
-    background-color: #2f3032;
-    vertical-align: middle;
+    background-color: #353639;
     overflow: hidden;
+    border-radius: 1.5vh;
 }
 
 input.slider::-moz-range-progress {
-    background-color: aqua; 
-    height: 3vh;
+    background-color: #71aff8; 
+    height: inherit;
 }
 
 input.slider::-moz-range-track {  
-    background-color: #2f3032;
-    height: 3vh;
+    background-color: #353639;
 }
 
 input.slider::-moz-range-thumb {
@@ -107,7 +123,7 @@ input.slider::-moz-range-thumb {
 
 input.slider::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-    color: aqua;
+    color: #71aff8;
 }
 
 input.slider::-webkit-slider-thumb {
@@ -116,29 +132,32 @@ input.slider::-webkit-slider-thumb {
     width: 0;
     height: 0;
     cursor: pointer;
-    box-shadow: -10vw 0 0 10vw #43e5f7;
+    box-shadow: -10vw 0 0 10vw #71aff8;
 }
   
 
 input.slider-num {
     width: 3.5vw;
-    margin-left: 4vw;
+    margin-left: 1vw;
 }
 
 input {
     font-size: 1vw;
-    width: 13.5vw;
+    width: 16.8vw;
     text-align: center;
-    height: 3vh;
+    height: 3.5vh;
     margin: 0;
     border: none;
+    border-radius: 0.5vh;
+    vertical-align: middle;
 }
 
 button {
     display: inline-block;
-    height: 3vh;
+    vertical-align: middle;
+    height: 3.5vh;
     width: 7vw;
     font-size: 1vw;
     border: none;
-    margin-top: 2.5vh;
+    border-radius: 0.5vh;
 }
