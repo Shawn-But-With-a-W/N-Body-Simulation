@@ -36,7 +36,7 @@
 
             <div class="input-separator">
                 <p class="label">Mass</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider" oninput="syncNum()">
+                <input type="range" min="0" max="100" value="50" class="slider" id="mass-slider" oninput="syncNum()">
                 <input class="slider-num" id="mass-num" onchange="syncSlider()">
                 <p class="unit">10^24 kg</p>
             </div>
@@ -61,14 +61,14 @@
 
             <div class="input-separator">
                 <p class="label">X-Velocity</p>
-                <input type="range" min="-10000" max="10000" value="0" class="slider" id="x-vel-slider" oninput="syncNum()">
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="x-vel-slider" oninput="syncNum()">
                 <input class="slider-num" id="x-vel-num" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Y-Velocity</p>
-                <input type="range" min="-10000" max="10000" value="0" class="slider" id="y-vel-slider" oninput="syncNum()">
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="y-vel-slider" oninput="syncNum()">
                 <input class="slider-num" id="y-vel-num" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
@@ -77,7 +77,7 @@
         <div id="general-settings">
             <div class="input-separator">
                 <p class="label">Trail Length</p>
-                <input type="range" min="1" max="20" value="4" class="slider" id="trail-slider" oninput="syncNum()">
+                <input type="range" min="0" max="20" value="4" class="slider" id="trail-slider" oninput="syncNum()">
                 <input class="slider-num" id="trail-num" onchange="syncSlider()">
             </div>
 
@@ -102,7 +102,7 @@
             </div>
             <div class="input-separator">
                 <p class="label">Softening Constant</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="softening-slider" oninput="syncNum()">
+                <input type="range" min="0" max="1000" value="50" class="slider" id="softening-slider" oninput="syncNum()">
                 <input class="slider-num" id="softening-num" onchange="syncSlider()">
             </div>
 

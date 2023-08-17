@@ -56,7 +56,12 @@ function syncSettings() {
     settings.t = parseFloat(document.getElementById("t-num").value);
     settings.softening = parseFloat(document.getElementById("softening-num").value);
     settings.trail = parseFloat(document.getElementById("trail-num").value);
-    settings.CanvasOpacity = 1 / settings.trail;
+    if (settings.trail > 1) {
+        settings.CanvasOpacity = 1 / settings.trail;
+    }
+    else {
+        settings.CanvasOpacity = 1;
+    }
     settings.intervalDelay = parseFloat(document.getElementById("interval-num").value);
 }
 
