@@ -47,7 +47,7 @@ function syncSlider() {
 function syncSettings() {
     settings.radius = parseFloat(document.getElementById("radius-num").value);
     settings.mass = parseFloat(document.getElementById("mass-num").value);
-    settings.colour = document.getElementById("colour-hex").value;
+    settings.colour = "#" + document.getElementById("colour-hex").value;
     settings.pos.x = parseFloat(document.getElementById("x-pos-num").value);
     settings.pos.y = parseFloat(document.getElementById("y-pos-num").value);
     settings.vel.x = parseFloat(document.getElementById("x-vel-num").value);
@@ -63,9 +63,9 @@ function syncSettings() {
 
 // TODO: Add drag functionality
 // Creating bodies on mouse click
-canvas.addEventListener("mousedown", createBody);
+canvas.addEventListener("mousedown", createBodyMouse);
 
-function createBody(event) {
+function createBodyMouse(event) {
     new Body(settings.radius, settings.mass, settings.colour, {x : (event.clientX - canvas.width/2 - translateLevel.x) / zoomLevel, y : -(event.clientY - canvas.height/2 - translateLevel.y) / zoomLevel}, {x : settings.vel.x, y : settings.vel.y});
 }
 

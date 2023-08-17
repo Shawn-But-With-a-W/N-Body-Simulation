@@ -43,32 +43,32 @@
 
             <div class="input-separator">
                 <p class="label">Colour</p>
-                <input id="colour-hex">
-                <p class="unit" onchange="syncSlider()">Hex</p>
+                <input id="colour-hex" value="71aff8" onchange="syncSettings()">
+                <p class="unit">Hex</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">X-Coord</p>
-                <input id="x-pos-num" onchange="syncSlider()">
+                <input id="x-pos-num" value="0" onchange="syncSettings()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Y-Coord</p>
-                <input id="y-pos-num" onchange="syncSlider()">
+                <input id="y-pos-num" value="0" onchange="syncSettings()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">X-Velocity</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="x-vel-slider" oninput="syncNum()">
+                <input type="range" min="-10000" max="10000" value="0" class="slider" id="x-vel-slider" oninput="syncNum()">
                 <input class="slider-num" id="x-vel-num" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Y-Velocity</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="y-vel-slider" oninput="syncNum()">
+                <input type="range" min="-10000" max="10000" value="0" class="slider" id="y-vel-slider" oninput="syncNum()">
                 <input class="slider-num" id="y-vel-num" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
@@ -83,7 +83,7 @@
 
             <div class="input-separator">
                 <p class="label">Time Step</p>
-                <input type="range" min="0.01" max="100" value="1" class="slider" id="t-slider" oninput="syncNum()">
+                <input type="range" min="0" max="100" value="1" class="slider" id="t-slider" oninput="syncNum()">
                 <input class="slider-num" id="t-num" onchange="syncSlider()">
                 <p class="unit">s</p>
             </div>
@@ -97,7 +97,7 @@
         <div id="advanced-settings">
             <div class="input-separator">
                 <p class="label">G</p>
-                <input id="G" value="0.0000000000667428" onchange="syncSlider()">
+                <input id="G" value="0.0000000000667428" onchange="syncSettings()">
                 <p class="unit" id="G-unit">m^3 kg^-2 s^-2</p>
             </div>
             <div class="input-separator">
