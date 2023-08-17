@@ -12,7 +12,7 @@ function update() {
 
 
 function refreshCanvas() {
-    ctx.globalAlpha = 1 / settings.trailLength;
+    ctx.globalAlpha = settings.canvasOpacity;
     ctx.fillStyle = "black";
     // Draw a rectangle over the entire canvas
     ctx.fillRect(-(canvas.width/2 + translateLevel.x) / zoomLevel, -(canvas.height/2 - translateLevel.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);

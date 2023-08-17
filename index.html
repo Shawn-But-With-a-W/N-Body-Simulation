@@ -29,49 +29,47 @@
 
             <div class="input-separator">
                 <p class="label">Radius</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="radius-slider">
-                <input class="slider-num" id="radius-num">
+                <input type="range" min="1" max="100" value="50" class="slider" id="radius-slider" oninput="syncNum()">
+                <input class="slider-num" id="radius-num" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Mass</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider">
-                <input class="slider-num" id="mass-num">
+                <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider" oninput="syncNum()">
+                <input class="slider-num" id="mass-num" onchange="syncSlider()">
                 <p class="unit">10^24 kg</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Colour</p>
                 <input id="colour-hex">
-                <p class="unit">Hex</p>
+                <p class="unit" onchange="syncSlider()">Hex</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">X-Coord</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="x-pos-slider">
-                <input class="slider-num" id="x-pos-num">
+                <input id="x-pos-num" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Y-Coord</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="y-pos-slider">
-                <input class="slider-num" id="y-pos-num">
+                <input id="y-pos-num" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">X-Velocity</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="x-vel-slider">
-                <input class="slider-num" id="x-vel-num">
+                <input type="range" min="1" max="100" value="50" class="slider" id="x-vel-slider" oninput="syncNum()">
+                <input class="slider-num" id="x-vel-num" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Y-Velocity</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="y-vel-slider">
-                <input class="slider-num" id="y-vel-num">
+                <input type="range" min="1" max="100" value="50" class="slider" id="y-vel-slider" oninput="syncNum()">
+                <input class="slider-num" id="y-vel-num" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
         </div>
@@ -79,19 +77,19 @@
         <div id="general-settings">
             <div class="input-separator">
                 <p class="label">Trail Length</p>
-                <input type="range" min="1" max="20" value="4" class="slider" id="trail-slider">
-                <input class="slider-num" id="trail-num">
+                <input type="range" min="1" max="20" value="4" class="slider" id="trail-slider" oninput="syncNum()">
+                <input class="slider-num" id="trail-num" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
                 <p class="label">Time Step</p>
-                <input type="range" min="0.01" max="100" value="1" class="slider" id="t-slider">
-                <input class="slider-num" id="t-num">
+                <input type="range" min="0.01" max="100" value="1" class="slider" id="t-slider" oninput="syncNum()">
+                <input class="slider-num" id="t-num" onchange="syncSlider()">
                 <p class="unit">s</p>
             </div>
 
             <div class="button-separator">
-                <button id="pause">Pause</button>
+                <button id="pause" onclick="pause()">Pause</button>
             </div>
         </div>
 
@@ -99,19 +97,19 @@
         <div id="advanced-settings">
             <div class="input-separator">
                 <p class="label">G</p>
-                <input id="G" value="0.0000000000667428">
+                <input id="G" value="0.0000000000667428" onchange="syncSlider()">
                 <p class="unit" id="G-unit">m^3 kg^-2 s^-2</p>
             </div>
             <div class="input-separator">
                 <p class="label">Softening Constant</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="softening-slider">
-                <input class="slider-num" id="softening-num">
+                <input type="range" min="1" max="100" value="50" class="slider" id="softening-slider" oninput="syncNum()">
+                <input class="slider-num" id="softening-num" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
                 <p class="label">Interval Delay</p>
-                <input type="range" min="1" max="100" value="10" class="slider" id="interval-slider">
-                <input class="slider-num" id="interval-num">
+                <input type="range" min="1" max="100" value="10" class="slider" id="interval-slider" oninput="syncNum()">
+                <input class="slider-num" id="interval-num" onchange="syncSlider()">
             </div>
         </div>
     </div>
@@ -120,15 +118,15 @@
 
 <!-- 
     TODO:
-    - Link input fields to settings
     - Make dropdown list for different types of settings
     - Sort out scale with units in viewport
     - Zoom relative to centre of viewport
-    - Pause functionality
     - Cap maximum speed
     - Click and drag functionality
     - Focus on object
+    - Information card hover thingy
     - Velocity vector display
     - Different options at collision
+    - Add icons (maybe?)
     - FPS display
 -->
