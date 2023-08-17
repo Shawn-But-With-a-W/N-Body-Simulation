@@ -1,4 +1,3 @@
-// TODO: Change units for the calculations to fit input units (mainly the drawing on screen, pixel to km ratio)
 let bodies = []; // Array of all bodies present
 
 class Body {
@@ -21,7 +20,7 @@ class Body {
     draw() {
         ctx.beginPath();
             ctx.fillStyle = this.colour;
-            ctx.arc(this.newPos.x, this.newPos.y, this.radius, 0, 2*Math.PI);
+            ctx.arc(this.newPos.x, this.newPos.y, this.radius / 100, 0, 2*Math.PI);
             ctx.fill();
         ctx.closePath();
     }
@@ -34,7 +33,7 @@ class Body {
             // Gravitational force only applied by bodies other than the current body itself
             if (body != this) {
                 // Finding the magnitude and angle from horizontal
-                let force = (settings.G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2 + settings.softening);
+                let force = (settings.G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2);
                 let theta = Math.atan(Math.abs((this.pos.y - body.pos.y) / (this.pos.x - body.pos.x)));
 
                 // Decomposing into x and y components and adding to the final force vector
@@ -62,6 +61,14 @@ class Body {
     updateVel() {
         this.vel.x += this.acc.x * settings.t;
         this.vel.y += this.acc.y * settings.t;
+
+        // Cap velocity
+        this.vel.x = Math.min(this.vel.x, 10*25);
+        this.vel.x = Math.max(this.vel.x, -10*25);
+        this.vel.y = Math.min(this.vel.y, 10*25);
+        this.vel.y = Math.max(this.vel.y, -10*25);
+
+        console.log(this.vel);
     }
 
     updatePos() {

@@ -36,9 +36,9 @@
 
             <div class="input-separator">
                 <p class="label">Mass</p>
-                <input type="range" min="0" max="100" value="50" class="slider" id="mass-slider" oninput="syncNum()">
+                <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider" oninput="syncNum()">
                 <input class="slider-num" id="mass-num" onchange="syncSlider()">
-                <p class="unit">10^24 kg</p>
+                <p class="unit">10^15 kg</p>
             </div>
 
             <div class="input-separator">
@@ -77,13 +77,13 @@
         <div id="general-settings">
             <div class="input-separator">
                 <p class="label">Trail Length</p>
-                <input type="range" min="0" max="20" value="4" class="slider" id="trail-slider" oninput="syncNum()">
+                <input type="range" min="0" max="10" value="3" class="slider" id="trail-slider" oninput="syncNum()">
                 <input class="slider-num" id="trail-num" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
                 <p class="label">Time Step</p>
-                <input type="range" min="0" max="100" value="1" class="slider" id="t-slider" oninput="syncNum()">
+                <input type="range" min="1" max="100" value="1" class="slider" id="t-slider" oninput="syncNum()">
                 <input class="slider-num" id="t-num" onchange="syncSlider()">
                 <p class="unit">s</p>
             </div>
@@ -101,9 +101,10 @@
                 <p class="unit" id="G-unit">m^3 kg^-2 s^-2</p>
             </div>
             <div class="input-separator">
-                <p class="label">Softening Constant</p>
-                <input type="range" min="0" max="1000" value="50" class="slider" id="softening-slider" oninput="syncNum()">
-                <input class="slider-num" id="softening-num" onchange="syncSlider()">
+                <p class="label">Velocity Cap</p>
+                <input type="range" min="1" max="20" value="5" class="slider" id="vel-cap-slider" oninput="syncNum()">
+                <input class="slider-num" id="vel-cap-num" onchange="syncSlider()">
+                <p class="unit">10^15 km</p>
             </div>
 
             <div class="input-separator">
@@ -119,9 +120,7 @@
 <!-- 
     TODO:
     - Make dropdown list for different types of settings
-    - Sort out scale with units in viewport
     - Zoom relative to centre of viewport
-    - Cap maximum speed
     - Click and drag functionality
     - Focus on object
     - Information card hover thingy

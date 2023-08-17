@@ -1,16 +1,16 @@
 let settings = {
-    radius : 50,
-    mass : 10**15,
-    colour : "#71aff8",
-    pos : {x:0, y:0},
-    vel : {x:0, y:0},
+    radius : 50, // (m)
+    mass : 10**15, // (kg)
+    colour : "#71aff8", // (hex)
+    pos : {x:0, y:0}, // (m), from origin
+    vel : {x:0, y:0}, // (m)
     G : 0.0000000000667428, // Gravitational constant, used in calculation of force
     t : 1, // Time interval between consecutive calculations
-    softening : 500, // Used to prevent the denominator in GMm/r^2 from going to 0 and producing infinite force
+    velCap : 10*25,
     trail : 4,
-    CanvasOpacity : 1/4,
+    canvasOpacity : 1/4,
     intervalDelay : 10,
-    _pause : false // *Changed to true to save power when testing, remember to change back
+    _pause : false
 };
 
 
@@ -22,7 +22,7 @@ function syncNum() {
     document.getElementById("x-vel-num").value = document.getElementById("x-vel-slider").value;
     document.getElementById("y-vel-num").value = document.getElementById("y-vel-slider").value;
     document.getElementById("t-num").value = document.getElementById("t-slider").value;
-    document.getElementById("softening-num").value = document.getElementById("softening-slider").value;
+    document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
     document.getElementById("trail-num").value = document.getElementById("trail-slider").value;
     document.getElementById("interval-num").value = document.getElementById("interval-slider").value;
 
@@ -36,31 +36,31 @@ function syncSlider() {
     document.getElementById("x-vel-slider").value = document.getElementById("x-vel-num").value;
     document.getElementById("y-vel-slider").value = document.getElementById("y-vel-num").value;
     document.getElementById("t-slider").value = document.getElementById("t-num").value;
-    document.getElementById("softening-slider").value = document.getElementById("softening-num").value;
+    document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value;
     document.getElementById("trail-slider").value = document.getElementById("trail-num").value;
     document.getElementById("interval-slider").value = document.getElementById("interval-num").value;
 
     syncSettings();
 }
 
-// Sync values of the settings record to be the same to the input panel's
+// Sync values of the settings record to be the same to the input panel's and convert units
 function syncSettings() {
-    settings.radius = parseFloat(document.getElementById("radius-num").value);
-    settings.mass = parseFloat(document.getElementById("mass-num").value);
+    settings.radius = parseFloat(document.getElementById("radius-num").value) * 1000;
+    settings.mass = parseFloat(document.getElementById("mass-num").value) * (10 ** 15);
     settings.colour = "#" + document.getElementById("colour-hex").value;
-    settings.pos.x = parseFloat(document.getElementById("x-pos-num").value);
-    settings.pos.y = parseFloat(document.getElementById("y-pos-num").value);
-    settings.vel.x = parseFloat(document.getElementById("x-vel-num").value);
-    settings.vel.y = parseFloat(document.getElementById("y-vel-num").value);
+    settings.pos.x = parseFloat(document.getElementById("x-pos-num").value) * 1000;
+    settings.pos.y = parseFloat(document.getElementById("y-pos-num").value) * 1000;
+    settings.vel.x = parseFloat(document.getElementById("x-vel-num").value) * 1000;
+    settings.vel.y = parseFloat(document.getElementById("y-vel-num").value) * 1000;
     settings.G = parseFloat(document.getElementById("G").value);
     settings.t = parseFloat(document.getElementById("t-num").value);
-    settings.softening = parseFloat(document.getElementById("softening-num").value);
+    settings.velCap = parseFloat(document.getElementById("vel-cap-num").value) * 1000 * (10 ** 15);
     settings.trail = parseFloat(document.getElementById("trail-num").value);
     if (settings.trail > 1) {
-        settings.CanvasOpacity = 1 / settings.trail;
+        settings.canvasOpacity = 1 / settings.trail;
     }
     else {
-        settings.CanvasOpacity = 1;
+        settings.canvasOpacity = 1;
     }
     settings.intervalDelay = parseFloat(document.getElementById("interval-num").value);
 }
