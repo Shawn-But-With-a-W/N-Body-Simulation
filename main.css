@@ -88,7 +88,7 @@ p.unit {
     width: 5vw;
     text-align: right;
     margin: 0;
-    margin-right: 0.5vw; /* TODO: See if the units look better right aligned or left */
+    margin-right: 0.5vw;
 }
 
 #G-unit {

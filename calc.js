@@ -8,7 +8,7 @@ class Body {
         // newPos is used for drawing the body, pos is used for calculations
         this.pos = pos; // (m)
         // Assign newPos with number values (primitive type) instead assigning an object, which would be pass by reference
-        this.newPos = {x:pos.x, y:pos.y}; 
+        this.newPos = {x:pos.x, y:pos.y};
         this.vel = vel; // (m/s)
         this.acc = {x:0, y:0}; // (m/s^2)
         this.force = {x:0, y:0}
@@ -20,7 +20,7 @@ class Body {
     draw() {
         ctx.beginPath();
             ctx.fillStyle = this.colour;
-            ctx.arc(this.newPos.x, this.newPos.y, this.radius / 100, 0, 2*Math.PI);
+            ctx.arc(this.newPos.x, this.newPos.y, this.radius, 0, 2*Math.PI);
             ctx.fill();
         ctx.closePath();
     }
@@ -32,9 +32,27 @@ class Body {
         for (let body of bodies) {
             // Gravitational force only applied by bodies other than the current body itself
             if (body != this) {
+                const dx = this.pos.x - body.pos.x;
+                const dy = this.pos.y - body.pos.y;                
+
                 // Finding the magnitude and angle from horizontal
-                let force = (settings.G * this.mass * body.mass) / ((this.pos.x - body.pos.x) ** 2 + (this.pos.y - body.pos.y) ** 2);
-                let theta = Math.atan(Math.abs((this.pos.y - body.pos.y) / (this.pos.x - body.pos.x)));
+                let dSqrd = dx ** 2 + dy ** 2;
+                if (dSqrd < settings.softening) {
+                    dSqrd = settings.softening;
+                }
+
+                const force = (settings.G * this.mass * body.mass) / (dSqrd);
+                let theta;
+
+                let tanRatio = Math.abs(dy/dx);
+
+                // In case when rounded, the ratio turns to be equivalent to dividing by 0
+                if (isNaN(tanRatio)) {
+                    theta = Math.PI/2;
+                }
+                else {
+                    theta = Math.atan(tanRatio);
+                }
 
                 // Decomposing into x and y components and adding to the final force vector
                 if (body.pos.x > this.pos.x) {
@@ -63,12 +81,18 @@ class Body {
         this.vel.y += this.acc.y * settings.t;
 
         // Cap velocity
-        this.vel.x = Math.min(this.vel.x, 10*25);
-        this.vel.x = Math.max(this.vel.x, -10*25);
-        this.vel.y = Math.min(this.vel.y, 10*25);
-        this.vel.y = Math.max(this.vel.y, -10*25);
-
-        console.log(this.vel);
+        if (this.vel.x > 0) {
+            this.vel.x = Math.min(this.vel.x, settings.velCap);
+        }
+        else if (this.vel.x < 0) {
+            this.vel.x = Math.max(this.vel.x, -settings.velCap);
+        }
+        if (this.vel.y > 0) {
+            this.vel.y = Math.min(this.vel.y, settings.velCap);
+        }
+        else if (this.vel.y < 0) {
+            this.vel.y = Math.max(this.vel.y, -settings.velCap);
+        }
     }
 
     updatePos() {

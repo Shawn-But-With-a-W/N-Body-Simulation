@@ -29,14 +29,14 @@
 
             <div class="input-separator">
                 <p class="label">Radius</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="radius-slider" oninput="syncNum()">
+                <input type="range" min="1" max="10" value="1" step="0.01" class="slider" id="radius-slider" oninput="syncNum()">
                 <input class="slider-num" id="radius-num" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Mass</p>
-                <input type="range" min="1" max="100" value="50" class="slider" id="mass-slider" oninput="syncNum()">
+                <input type="range" min="1" max="10000" value="300" step="0.01" class="slider" id="mass-slider" oninput="syncNum()">
                 <input class="slider-num" id="mass-num" onchange="syncSlider()">
                 <p class="unit">10^15 kg</p>
             </div>
@@ -61,14 +61,14 @@
 
             <div class="input-separator">
                 <p class="label">X-Velocity</p>
-                <input type="range" min="-1000" max="1000" value="0" class="slider" id="x-vel-slider" oninput="syncNum()">
-                <input class="slider-num" id="x-vel-num" onchange="syncSlider()">
+                <input type="range" min="-10" max="10" value="0" step="0.01" class="slider" id="x-vel-slider" oninput="syncNum()">
+                <input class="slider-num" id="x-vel-num" type="number" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Y-Velocity</p>
-                <input type="range" min="-1000" max="1000" value="0" class="slider" id="y-vel-slider" oninput="syncNum()">
+                <input type="range" min="-10" max="10" value="0" step="0.01" class="slider" id="y-vel-slider" oninput="syncNum()">
                 <input class="slider-num" id="y-vel-num" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
@@ -77,13 +77,13 @@
         <div id="general-settings">
             <div class="input-separator">
                 <p class="label">Trail Length</p>
-                <input type="range" min="0" max="10" value="3" class="slider" id="trail-slider" oninput="syncNum()">
+                <input type="range" min="0" max="100" value="15" class="slider" id="trail-slider" oninput="syncNum()">
                 <input class="slider-num" id="trail-num" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
                 <p class="label">Time Step</p>
-                <input type="range" min="1" max="100" value="1" class="slider" id="t-slider" oninput="syncNum()">
+                <input type="range" min="0.1" max="100" value="1" step="0.1" class="slider" id="t-slider" oninput="syncNum()">
                 <input class="slider-num" id="t-num" onchange="syncSlider()">
                 <p class="unit">s</p>
             </div>
@@ -100,17 +100,19 @@
                 <input id="G" value="0.0000000000667428" onchange="syncSettings()">
                 <p class="unit" id="G-unit">m^3 kg^-2 s^-2</p>
             </div>
+
             <div class="input-separator">
-                <p class="label">Velocity Cap</p>
-                <input type="range" min="1" max="20" value="5" class="slider" id="vel-cap-slider" oninput="syncNum()">
-                <input class="slider-num" id="vel-cap-num" onchange="syncSlider()">
-                <p class="unit">10^15 km</p>
+                <p class="label">Softening Constant</p>
+                <input type="range" min="0" max="100" value="10" step="0.01" class="slider" id="softening-slider" oninput="syncNum()">
+                <input class="slider-num" id="softening-num" onchange="syncSlider()">
+                <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Interval Delay</p>
-                <input type="range" min="1" max="100" value="10" class="slider" id="interval-slider" oninput="syncNum()">
-                <input class="slider-num" id="interval-num" onchange="syncSlider()">
+                <p class="label">Velocity Cap</p>
+                <input type="range" min="0" max="100" value="5" step="0.01" class="slider" id="vel-cap-slider" oninput="syncNum()">
+                <input class="slider-num" id="vel-cap-num" onchange="syncSlider()">
+                <p class="unit">km/s</p>
             </div>
         </div>
     </div>
@@ -123,6 +125,7 @@
     - Zoom relative to centre of viewport
     - Click and drag functionality
     - Focus on object
+    - Add graphs
     - Information card hover thingy
     - Velocity vector display
     - Different options at collision
