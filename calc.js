@@ -37,6 +37,7 @@ class Body {
 
                 // Finding the magnitude and angle from horizontal
                 let dSqrd = dx ** 2 + dy ** 2;
+                // Limiting the minum distance between objects
                 if (dSqrd < settings.softening) {
                     dSqrd = settings.softening;
                 }

@@ -54,7 +54,7 @@ function syncSlider() {
 // Sync values of the settings record to be the same to the input panel's and convert units
 function syncSettings() {
     settings.radius = parseFloat(document.getElementById("radius-num").value) * 1000;
-    settings.mass = parseFloat(document.getElementById("mass-num").value) * (10 ** 15);
+    settings.mass = parseFloat(document.getElementById("mass-num").value) * (10 ** 18);
     settings.colour = "#" + document.getElementById("colour-hex").value;
     settings.pos.x = parseFloat(document.getElementById("x-pos-num").value) * 1000;
     settings.pos.y = parseFloat(document.getElementById("y-pos-num").value) * 1000;
@@ -63,7 +63,7 @@ function syncSettings() {
     settings.G = parseFloat(document.getElementById("G").value);
     settings.t = parseFloat(document.getElementById("t-num").value);
     settings.softening = parseFloat(document.getElementById("softening-num").value) * 1000;
-    settings.velCap = parseFloat(document.getElementById("vel-cap-num").value) * 1000 * (10 ** 5);
+    settings.velCap = parseFloat(document.getElementById("vel-cap-num").value) * 1000;
     settings.trail = parseFloat(document.getElementById("trail-num").value);
     if (settings.trail > 1) {
         settings.canvasOpacity = 1 / settings.trail;
