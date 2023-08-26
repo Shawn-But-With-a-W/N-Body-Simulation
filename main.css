@@ -2,31 +2,6 @@
     box-sizing: border-box; 
 }
 
-#body1 {
-    position: absolute;
-    top: 100px;
-    right: 0;
-    color: white;
-}
-#body2 {
-    position: absolute;
-    top: 300px;
-    right: 0;
-    color: white;
-}
-#body3 {
-    position: absolute;
-    top: 500px;
-    right: 0;
-    color: white;
-}
-#body4 {
-    position: absolute;
-    top: 700px;
-    right: 0;
-    color: white;
-}
-
 body {
     background-color: #1f2428;
     border: 0;
@@ -50,14 +25,57 @@ canvas {
 /* Inputs */
 /* Breaks at higher zoom levels since the viewport dimensions are scuffed */
 
-#input-panel {
+#input-panel-right {
     display: block;
     position: fixed;
     width: fit-content;
     height: fit-content;
-    top: 5vh; /* *Change this later to be a dropdown*/
+    top: 0; /* *Change this later to be a dropdown*/
     right: 0;
     background-color: #24292e;
+}
+
+#input-panel-left {
+    display: block;
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    top: 0; /* *Change this later to be a dropdown*/
+    left: 0;
+    background-color: #24292e;
+}
+
+
+#body-settings {
+    display: block;
+}
+
+#general-settings {
+    display: block;
+}
+
+#advanced-settings {
+    display: none;
+}
+
+.dropdown {
+    display: block;
+    text-align: left;
+    margin: 0;
+    font-size: 1.25vw;
+    padding: 2vh 1vw;
+    background-color: #1f2428;
+
+    /* Prevent text from being highlighted when clicking on dropdown */
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dropdown:hover {
+    cursor: pointer;
 }
 
 .input-separator {

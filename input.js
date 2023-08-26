@@ -1,4 +1,6 @@
-let settings = {
+// TODO: add drag multiplier, reset, drag indicator colour, add icon for dropdown
+
+let settings = { // TODO: Make this look nice and have the default values stored here rather than in html
     radius : 1, // (km)
     mass : 10**15, // (kg)
     colour : "#71aff8", // (hex)
@@ -21,6 +23,8 @@ let settings = {
 //         syncSettings();
 //     })
 // }
+
+// Obtaining the value of inputs
 
 syncNum();
 // Set each input field to match the slider
@@ -74,19 +78,75 @@ function syncSettings() {
     }
 }
 
-// Create bodies when the add body button is clicked
-function createBodyButton() {
-    new Body(settings.radius, settings.mass, settings.colour, {x:settings.pos.x, y:settings.pos.y}, {x:settings.vel.x, y:settings.vel.y});
+// Dropdowns
+
+visibility = {
+    body : true,
+    general : true,
+    advanced : false
+};
+
+document.getElementById("body-dropdown").addEventListener("click", collapseBody);
+document.getElementById("general-dropdown").addEventListener("click", collapseGeneral);
+document.getElementById("advanced-dropdown").addEventListener("click", collapseAdvanced);
+
+
+function collapseBody() {
+    if (visibility.body) {
+        visibility.body = false;
+        document.getElementById("body-settings").style.display = "none";
+    }
+    else {
+        visibility.body = true;
+        document.getElementById("body-settings").style.display = "block";
+    }
+}
+
+function collapseGeneral() {
+    if (visibility.general) {
+        visibility.general = false;
+        document.getElementById("general-settings").style.display = "none";
+    }
+    else {
+        visibility.general = true;
+        document.getElementById("general-settings").style.display = "block";
+    }
+}
+
+function collapseAdvanced() {
+    if (visibility.advanced) {
+        visibility.advanced = false;
+        document.getElementById("advanced-settings").style.display = "none";
+    }
+    else {
+        visibility.advanced = true;
+        document.getElementById("advanced-settings").style.display = "block";
+    }
 }
 
 
-// TODO: Add drag functionality
+// Create bodies when the add body button is clicked
+function createBodyButton() {
+    new Body(
+        settings.radius, 
+        settings.mass, 
+        settings.colour, 
+        {
+            x:settings.pos.x, 
+            y:settings.pos.y
+        }, 
+        {
+            x:settings.vel.x, 
+            y:settings.vel.y
+        }
+    );
+}
+
+
 // Creating bodies on mouse click
-
-
-window.addEventListener("mousedown", startDrag);
-window.addEventListener("mousemove", drag);
-window.addEventListener("mouseup", createBodyMouse);
+overlayCanvas.addEventListener("mousedown", startDrag);
+overlayCanvas.addEventListener("mousemove", drag);
+overlayCanvas.addEventListener("mouseup", createBodyMouse);
 
 let _drag = false;
 let initialPos = {};
@@ -126,7 +186,9 @@ function createBodyMouse() {
     dragVel.y = -(finalPos.y - initialPos.y) * 25; // Negative since the default canvas has its y-axis inverted
 
     new Body(
-        settings.radius, settings.mass, settings.colour, 
+        settings.radius, 
+        settings.mass, 
+        settings.colour, 
         {
             x : (initialPos.x - canvas.width/2 - translateLevel.x) / zoomLevel, 
             y : -(initialPos.y - canvas.height/2 - translateLevel.y) / zoomLevel
@@ -135,7 +197,7 @@ function createBodyMouse() {
             x : dragVel.x, 
             y : dragVel.y
         }
-        );
+    );
 }
 
 
