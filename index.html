@@ -11,6 +11,8 @@
     <script src='render.js' defer></script>
     <script src='input.js' defer></script>
 
+    <!-- Import Google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>    
@@ -18,7 +20,10 @@
     <canvas id="overlay-canvas" width="1920" height="1080">No canvas avaliable</canvas>
     
     <div id="input-panel-right">
-        <p class="dropdown" id="body-dropdown">Body Settings</p>
+        <p class="dropdown" id="body-dropdown">
+            <span class="material-symbols-outlined" id="body-icon">expand_less</span>
+            Body Settings
+        </p>
         <div id="body-settings">
             <div class="button-separator">
                 <button id="new-body" onclick="createBodyButton()">Add body</button>
@@ -70,7 +75,10 @@
             </div>
         </div>
         
-        <p class="dropdown" id="general-dropdown">General Settings</p>
+        <p class="dropdown" id="general-dropdown">
+            <span class="material-symbols-outlined" id="general-icon">expand_less</span>
+            General Settings
+        </p>
         <div id="general-settings">
             <div class="input-separator">
                 <p class="label">Trail Length</p>
@@ -92,7 +100,11 @@
     </div>
 
     <div id="input-panel-left">
-        <p class="dropdown" id="advanced-dropdown">Advanced Settings</p>
+        
+        <p class="dropdown" id="advanced-dropdown">
+            <span class="material-symbols-outlined" id="advanced-icon">expand_more</span>
+            Advanced Settings
+        </p>
         <div id="advanced-settings">
             <div class="input-separator">
                 <p class="label">G</p>

@@ -78,6 +78,10 @@ canvas {
     cursor: pointer;
 }
 
+span {
+    vertical-align: middle;
+}
+
 .input-separator {
     border: 0.1vh black solid;
     height: fit-content;

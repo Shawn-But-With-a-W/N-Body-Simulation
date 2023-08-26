@@ -95,10 +95,12 @@ function collapseBody() {
     if (visibility.body) {
         visibility.body = false;
         document.getElementById("body-settings").style.display = "none";
+        document.getElementById("body-icon").innerText = "expand_more";
     }
     else {
         visibility.body = true;
         document.getElementById("body-settings").style.display = "block";
+        document.getElementById("body-icon").innerText = "expand_less";
     }
 }
 
@@ -106,10 +108,12 @@ function collapseGeneral() {
     if (visibility.general) {
         visibility.general = false;
         document.getElementById("general-settings").style.display = "none";
+        document.getElementById("general-icon").innerText = "expand_more";
     }
     else {
         visibility.general = true;
         document.getElementById("general-settings").style.display = "block";
+        document.getElementById("general-icon").innerText = "expand_less";
     }
 }
 
@@ -117,10 +121,12 @@ function collapseAdvanced() {
     if (visibility.advanced) {
         visibility.advanced = false;
         document.getElementById("advanced-settings").style.display = "none";
+        document.getElementById("advanced-icon").innerText = "expand_more";
     }
     else {
         visibility.advanced = true;
         document.getElementById("advanced-settings").style.display = "block";
+        document.getElementById("advanced-icon").innerText = "expand_less";
     }
 }
 
