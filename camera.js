@@ -1,3 +1,5 @@
+// TODO: fix camera controls not working when paused
+
 // Setting up canvas
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");

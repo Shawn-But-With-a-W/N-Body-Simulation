@@ -110,6 +110,10 @@ p.label {
     margin-left: 0.5vw;
 }
 
+p.label:hover {
+    cursor: help;
+}
+
 p.unit {
     width: 5vw;
     text-align: right;
@@ -130,6 +134,7 @@ input.slider {
     background-color: #353639;
     overflow: hidden;
     border-radius: 1.5vh;
+    cursor: ew-resize;
 }
 
 input.slider::-moz-range-progress {
@@ -182,8 +187,12 @@ button {
     display: inline-block;
     vertical-align: middle;
     height: 3.5vh;
-    width: 7vw;
+    width: 12vw;
     font-size: 1vw;
     border: none;
     border-radius: 0.5vh;
+}
+
+button:hover {
+    cursor: pointer;
 }
