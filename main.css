@@ -43,6 +43,10 @@ canvas {
     display: inline-block;
 }
 
+#overlay-canvas {
+    background-color: rgba(0, 0, 0, 0);
+}
+
 /* Inputs */
 /* Breaks at higher zoom levels since the viewport dimensions are scuffed */
 
@@ -137,13 +141,13 @@ input.slider::-webkit-slider-thumb {
   
 
 input.slider-num {
-    width: 3.5vw;
+    width: 4vw;
     margin-left: 1vw;
 }
 
 input {
     font-size: 1vw;
-    width: 16.8vw;
+    width: 17.3vw;
     text-align: center;
     height: 3.5vh;
     margin: 0;
