@@ -55,7 +55,7 @@ function syncSlider() {
 function syncSettings() {
     settings.radius = parseFloat(document.getElementById("radius-num").value) * 1000;
     settings.mass = parseFloat(document.getElementById("mass-num").value) * (10 ** 18);
-    settings.colour = document.getElementById("colour-hex").value;
+    settings.colour = document.getElementById("colour").value;
     settings.pos.x = parseFloat(document.getElementById("x-pos-num").value) * 1000;
     settings.pos.y = parseFloat(document.getElementById("y-pos-num").value) * 1000;
     settings.vel.x = parseFloat(document.getElementById("x-vel-num").value) * 1000;
@@ -88,23 +88,26 @@ window.addEventListener("mousedown", startDrag);
 window.addEventListener("mousemove", drag);
 window.addEventListener("mouseup", createBodyMouse);
 
-let _drag;
-let initialPos;
-let finalPos;
+let _drag = false;
+let initialPos = {};
+let finalPos = {};
+let dragVel = {};
 
 function startDrag(event) {
     _drag = true;
-    initialPos = {x : event.clientX, y : event.clientY}
+    initialPos = {x : event.clientX, y : event.clientY};
+    finalPos = {x : initialPos.x, y : initialPos.y};
+    dragVel = {x : 0, y : 0};
+
 }
 
 function drag(event) {
     if (_drag) {
-        console.log("dragging");
         finalPos = {x : event.clientX, y : event.clientY}
 
         overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
 
-        overlayCtx.strokeStyle = "white";
+        overlayCtx.strokeStyle = "#7a71f8";
         overlayCtx.lineWidth = 1;
         overlayCtx.beginPath();
         overlayCtx.moveTo(initialPos.x, initialPos.y);
@@ -115,11 +118,24 @@ function drag(event) {
     }
 }
 
-function createBodyMouse(event) {
+function createBodyMouse() {
     _drag = false;
     overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
 
-    new Body(settings.radius, settings.mass, settings.colour, {x : (event.clientX - canvas.width/2 - translateLevel.x) / zoomLevel, y : -(event.clientY - canvas.height/2 - translateLevel.y) / zoomLevel}, {x : settings.vel.x, y : settings.vel.y});
+    dragVel.x = (finalPos.x - initialPos.x) * 25;
+    dragVel.y = -(finalPos.y - initialPos.y) * 25; // Negative since the default canvas has its y-axis inverted
+
+    new Body(
+        settings.radius, settings.mass, settings.colour, 
+        {
+            x : (initialPos.x - canvas.width/2 - translateLevel.x) / zoomLevel, 
+            y : -(initialPos.y - canvas.height/2 - translateLevel.y) / zoomLevel
+        }, 
+        {
+            x : dragVel.x, 
+            y : dragVel.y
+        }
+        );
 }
 
 

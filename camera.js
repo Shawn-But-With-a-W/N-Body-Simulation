@@ -19,7 +19,7 @@ function resizeCanvas() {
     ctx.scale(zoomLevel, -zoomLevel);
 }
 
-canvas.addEventListener("wheel", zoom);
+window.addEventListener("wheel", zoom);
 
 function zoom(event) {
     zoomLevel += event.deltaY * -0.000005;
@@ -28,7 +28,7 @@ function zoom(event) {
 }
 
 
-canvas.addEventListener("mousemove", pan);
+window.addEventListener("mousemove", pan);
 
 function pan(event) {
     if (event.ctrlKey) {
