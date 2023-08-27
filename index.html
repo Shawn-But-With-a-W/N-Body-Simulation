@@ -7,9 +7,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='calc.js' defer></script>
-    <script src='camera.js' defer></script>
     <script src='render.js' defer></script>
     <script src='input.js' defer></script>
+    <script src='camera.js' defer></script>
 
     <!-- Import Google icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -31,14 +31,14 @@
 
             <div class="input-separator">
                 <p class="label">Radius</p>
-                <input type="range" min="1" max="100" value="10" step="0.01" class="slider" id="radius-slider" oninput="syncNum()">
+                <input type="range" min="1" max="100" value="10" step="0.01" class="slider body-slider" id="radius-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="radius-num" min="1" max="100" value="10" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Mass</p>
-                <input type="range" min="1" max="9999" value="1000" step="0.01" class="slider" id="mass-slider" oninput="syncNum()">
+                <input type="range" min="1" max="9999" value="1000" step="0.01" class="slider body-slider" id="mass-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="mass-num" min="1" max="1000" value="1000" onchange="syncSlider()">
                 <p class="unit">10^18 kg</p>
             </div>
@@ -62,14 +62,14 @@
 
             <div class="input-separator">
                 <p class="label">X-Velocity</p>
-                <input type="range" min="-20" max="20" value="0" step="0.01" class="slider" id="x-vel-slider" oninput="syncNum()">
+                <input type="range" min="-20" max="20" value="0" step="0.01" class="slider body-slider" id="x-vel-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="x-vel-num" min="-20" max="20" value="0" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Y-Velocity</p>
-                <input type="range" min="-20" max="20" value="0" step="0.01" class="slider" id="y-vel-slider" oninput="syncNum()">
+                <input type="range" min="-20" max="20" value="0" step="0.01" class="slider body-slider" id="y-vel-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="y-vel-num" min="-20" max="20" value="0" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
@@ -82,17 +82,19 @@
         <div id="general-settings">
             <div class="button-separator">
                 <button id="pause" onclick="pause()">Pause</button>
+                <button id="remove" onclick="remove()">Remove all Bodies</button>
+                <button id="reset" onclick="reset()">Default Values</button>
             </div>
 
             <div class="input-separator">
                 <p class="label">Trail Length</p>
-                <input type="range" min="0" max="100" value="15" class="slider" id="trail-slider" oninput="syncNum()">
+                <input type="range" min="0" max="100" value="15" class="slider general-slider" id="trail-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" min="0" max="100" value="15" id="trail-num" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
                 <p class="label">Time Step</p>
-                <input type="range" min="0.1" max="100" value="1" step="0.1" class="slider" id="t-slider" oninput="syncNum()">
+                <input type="range" min="0.01" max="25" value="1" step="0.01" class="slider general-slider" id="t-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" min="0" max="100" value="1" id="t-num" onchange="syncSlider()">
                 <p class="unit">s</p>
             </div>
@@ -114,24 +116,36 @@
 
             <div class="input-separator">
                 <p class="label">Softening Constant</p>
-                <input type="range" min="0" max="1000" value="100" step="0.01" class="slider" id="softening-slider" oninput="syncNum()">
+                <input type="range" min="0" max="1000" value="100" step="0.01" class="slider advanced-slider" id="softening-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="softening-num" min="0" max="1000" value="100" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Velocity Cap</p>
-                <input type="range" min="0" max="1000" value="20" step="0.01" class="slider" id="vel-cap-slider" oninput="syncNum()">
+                <input type="range" min="0" max="1000" value="20" step="0.01" class="slider advanced-slider" id="vel-cap-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="vel-cap-num" min="0" max="1000" value="20" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Drag Multiplier</p>
-                <input type="range" min="0" max="1000" value="20" step="0.01" class="slider" id="vel-cap-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" id="vel-cap-num" min="0" max="1000" value="20" onchange="syncSlider()">
-                <p class="unit">km/s</p>
+                <input type="range" min="0" max="100" value="25" step="0.01" class="slider advanced-slider" id="drag-mult-slider" oninput="syncNum()">
+                <input type="number" class="slider-num" id="drag-mult-num" min="0" max="100" value="25" onchange="syncSlider()">
             </div>
+
+            <div class="input-separator">
+                <p class="label">Drag Indicator Width</p>
+                <input type="range" min="0" max="25" value="2" step="1" class="slider advanced-slider" id="drag-width-slider" oninput="syncNum()">
+                <input type="number" class="slider-num" id="drag-width-num" min="0" max="25" value="2" onchange="syncSlider()">
+                <p class="unit">px</p>
+            </div>
+
+            <div class="input-separator">
+                <p class="label">Drag Indicator Colour</p>
+                <input id="drag-colour" value="#7a71f8" type="color" onchange="syncSettings()">
+            </div>
+
         </div>
     </div>
 </body>
@@ -139,6 +153,9 @@
 
 <!-- 
     TODO:
+    - Finish restore default values button
+    - Fix zoom and translate not working when paused
+    - Add instruction display
     - Zoom relative to centre of viewport
     - Information card hover thingy
 -->

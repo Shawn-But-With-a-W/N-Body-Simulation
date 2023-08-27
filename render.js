@@ -1,3 +1,9 @@
+// Setting up canvas
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+let overlayCanvas = document.getElementById("overlay-canvas"); // Canvas to be used by the drag indicator line
+let overlayCtx = overlayCanvas.getContext("2d");
+
 requestAnimationFrame(update);
 
 function update() {

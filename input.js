@@ -1,6 +1,4 @@
-// TODO: add drag multiplier, reset, drag indicator colour, add icon for dropdown
-
-let settings = { // TODO: Make this look nice and have the default values stored here rather than in html
+let settings = { // TODO: Make this look nice and have the default values stored here the same as html
     radius : 1, // (km)
     mass : 10**15, // (kg)
     colour : "#71aff8", // (hex)
@@ -12,7 +10,10 @@ let settings = { // TODO: Make this look nice and have the default values stored
     softening : 1000, // Value to set distance if distance is less than
     trail : 4,
     canvasOpacity : 1/4,
-    _pause : false
+    _pause : false,
+    dragMultiplier : 25,
+    dragWidth : 2,
+    dragColour : "#7a71f8"
 };
 
 // const ids = ["radius", "mass","x-vel","y-vel","t","vel-cap","trail","interval"];
@@ -33,10 +34,13 @@ function syncNum() {
     document.getElementById("mass-num").value = document.getElementById("mass-slider").value;
     document.getElementById("x-vel-num").value = document.getElementById("x-vel-slider").value;
     document.getElementById("y-vel-num").value = document.getElementById("y-vel-slider").value;
+    document.getElementById("trail-num").value = document.getElementById("trail-slider").value;
     document.getElementById("t-num").value = document.getElementById("t-slider").value;
     document.getElementById("softening-num").value = document.getElementById("softening-slider").value;
     document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
-    document.getElementById("trail-num").value = document.getElementById("trail-slider").value;
+    document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
+    document.getElementById("drag-mult-num").value = document.getElementById("drag-mult-slider").value;
+    document.getElementById("drag-width-num").value = document.getElementById("drag-width-slider").value;
 
     syncSettings();
 }
@@ -47,10 +51,12 @@ function syncSlider() {
     document.getElementById("mass-slider").value = document.getElementById("mass-num").value;
     document.getElementById("x-vel-slider").value = document.getElementById("x-vel-num").value;
     document.getElementById("y-vel-slider").value = document.getElementById("y-vel-num").value;
-    document.getElementById("t-slider").value = document.getElementById("t-num").value;
-    document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value;
-    document.getElementById("softening-slider").value = document.getElementById("softening-num").value;
     document.getElementById("trail-slider").value = document.getElementById("trail-num").value;
+    document.getElementById("t-slider").value = document.getElementById("t-num").value;
+    document.getElementById("softening-slider").value = document.getElementById("softening-num").value;
+    document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value;
+    document.getElementById("drag-mult-slider").value = document.getElementById("drag-mult-num").value;
+    document.getElementById("drag-width-slider").value = document.getElementById("drag-width-num").value;
 
     syncSettings();
 }
@@ -76,6 +82,10 @@ function syncSettings() {
     else {
         settings.canvasOpacity = 1;
     }
+    settings.dragMultiplier = parseFloat(document.getElementById("drag-mult-num").value);
+    settings.dragWidth = parseInt(document.getElementById("drag-width-num").value);
+    settings.dragColour = document.getElementById("drag-colour").value;
+
 }
 
 // Dropdowns
@@ -172,9 +182,9 @@ function drag(event) {
         finalPos = {x : event.clientX, y : event.clientY}
 
         overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+        overlayCtx.strokeStyle = settings.dragColour;
+        overlayCtx.lineWidth = settings.dragWidth;
 
-        overlayCtx.strokeStyle = "#7a71f8";
-        overlayCtx.lineWidth = 1;
         overlayCtx.beginPath();
         overlayCtx.moveTo(initialPos.x, initialPos.y);
         overlayCtx.lineTo(finalPos.x, finalPos.y);
@@ -188,8 +198,8 @@ function createBodyMouse() {
     _drag = false;
     overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
 
-    dragVel.x = (finalPos.x - initialPos.x) * 25;
-    dragVel.y = -(finalPos.y - initialPos.y) * 25; // Negative since the default canvas has its y-axis inverted
+    dragVel.x = (finalPos.x - initialPos.x) * settings.dragMultiplier;
+    dragVel.y = -(finalPos.y - initialPos.y) * settings.dragMultiplier; // Negative since the default canvas has its y-axis inverted
 
     new Body(
         settings.radius, 
@@ -208,7 +218,7 @@ function createBodyMouse() {
 
 
 // Pause functionality
-pauseButton = document.getElementById("pause")
+pauseButton = document.getElementById("pause");
 function pause() {
     if (settings._pause) {
         settings._pause = false;
@@ -220,3 +230,10 @@ function pause() {
         pauseButton.innerText = "Resume";
     }
 }
+
+// Removing all bodies
+function remove() {
+    bodies = [];
+}
+
+// TODO: Restoring to default values
