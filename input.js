@@ -10,6 +10,7 @@ let settings = { // TODO: Make this look nice and have the default values stored
     softening : 250, // Value to set distance if distance is less than
     trail : 15,
     canvasOpacity : 1/15,
+    scrollMultiplier : 5 * (10 ** -7),
     dragMultiplier : 25,
     dragWidth : 2,
     dragColour : "#7a71f8",
@@ -42,6 +43,7 @@ function syncNum() {
         document.getElementById("t-num").value = document.getElementById("t-slider").value;
         document.getElementById("softening-num").value = document.getElementById("softening-slider").value;
         document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
+        document.getElementById("scroll-mult-num").value = document.getElementById("scroll-mult-slider").value;
         document.getElementById("drag-mult-num").value = document.getElementById("drag-mult-slider").value;
         document.getElementById("drag-width-num").value = document.getElementById("drag-width-slider").value;
     }
@@ -60,6 +62,7 @@ function syncSlider() {
         document.getElementById("t-slider").value = document.getElementById("t-num").value;
         document.getElementById("softening-slider").value = document.getElementById("softening-num").value;
         document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value;
+        document.getElementById("scroll-mult-slider").value = document.getElementById("scroll-mult-num").value;
         document.getElementById("drag-mult-slider").value = document.getElementById("drag-mult-num").value;
         document.getElementById("drag-width-slider").value = document.getElementById("drag-width-num").value;
     }
@@ -101,6 +104,8 @@ function syncSettings() {
     else {
         settings.canvasOpacity = 1;
     }
+
+    settings.scrollMultiplier = parseFloat(document.getElementById("scroll-mult-num").value) * (10 ** -7);
     settings.dragMultiplier = parseFloat(document.getElementById("drag-mult-num").value);
     settings.dragWidth = parseInt(document.getElementById("drag-width-num").value);
     settings.dragColour = document.getElementById("drag-colour").value;
