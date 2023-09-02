@@ -279,3 +279,14 @@ function resetAdvanced() {
     settings.dragWidth = document.getElementById("drag-width-slider").value = document.getElementById("drag-width-num").value = 2;
     settings.dragColour = document.getElementById("drag-colour").value = "#7a71f8";
 }
+
+
+function resetZoom() {
+    zoomLevel = 0.001;
+    resizeCanvas();
+}
+
+function resetPan() {
+    translateLevel = {x:0, y:0};
+    resizeCanvas();
+}

@@ -25,8 +25,8 @@ function resizeCanvas() {
 window.addEventListener("wheel", zoom);
 
 function zoom(event) {
-    zoomLevel += event.deltaY * -0.0000001;
-    zoomLevel = Math.min(Math.max(0.000001, zoomLevel), 0.5); // Add a maximum and minimum value to the zoom
+    zoomLevel += event.deltaY * -0.0000005;
+    zoomLevel = Math.min(Math.max(0.0001, zoomLevel), 0.01); // Add a maximum and minimum value to the zoom
     resizeCanvas();
 }
 
