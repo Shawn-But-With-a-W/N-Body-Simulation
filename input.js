@@ -10,10 +10,13 @@ let settings = { // TODO: Make this look nice and have the default values stored
     softening : 250, // Value to set distance if distance is less than
     trail : 15,
     canvasOpacity : 1/15,
-    _pause : false,
     dragMultiplier : 25,
     dragWidth : 2,
-    dragColour : "#7a71f8"
+    dragColour : "#7a71f8",
+
+    _pause : false,
+    _invertY : false,
+    _sliders : true,
 };
 
 // const ids = ["radius", "mass","x-vel","y-vel","t","vel-cap","trail","interval"];
@@ -30,32 +33,36 @@ let settings = { // TODO: Make this look nice and have the default values stored
 syncNum();
 // Set each input field to match the slider
 function syncNum() {
-    document.getElementById("radius-num").value = document.getElementById("radius-slider").value;
-    document.getElementById("mass-num").value = document.getElementById("mass-slider").value;
-    document.getElementById("x-vel-num").value = document.getElementById("x-vel-slider").value;
-    document.getElementById("y-vel-num").value = document.getElementById("y-vel-slider").value;
-    document.getElementById("trail-num").value = document.getElementById("trail-slider").value;
-    document.getElementById("t-num").value = document.getElementById("t-slider").value;
-    document.getElementById("softening-num").value = document.getElementById("softening-slider").value;
-    document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
-    document.getElementById("drag-mult-num").value = document.getElementById("drag-mult-slider").value;
-    document.getElementById("drag-width-num").value = document.getElementById("drag-width-slider").value;
+    if (settings._sliders) {
+        document.getElementById("radius-num").value = document.getElementById("radius-slider").value;
+        document.getElementById("mass-num").value = document.getElementById("mass-slider").value;
+        document.getElementById("x-vel-num").value = document.getElementById("x-vel-slider").value;
+        document.getElementById("y-vel-num").value = document.getElementById("y-vel-slider").value;
+        document.getElementById("trail-num").value = document.getElementById("trail-slider").value;
+        document.getElementById("t-num").value = document.getElementById("t-slider").value;
+        document.getElementById("softening-num").value = document.getElementById("softening-slider").value;
+        document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
+        document.getElementById("drag-mult-num").value = document.getElementById("drag-mult-slider").value;
+        document.getElementById("drag-width-num").value = document.getElementById("drag-width-slider").value;
+    }
 
     syncSettings();
 }
 
 // Set each slider to match the input field
 function syncSlider() {
-    document.getElementById("radius-slider").value = document.getElementById("radius-num").value;
-    document.getElementById("mass-slider").value = document.getElementById("mass-num").value;
-    document.getElementById("x-vel-slider").value = document.getElementById("x-vel-num").value;
-    document.getElementById("y-vel-slider").value = document.getElementById("y-vel-num").value;
-    document.getElementById("trail-slider").value = document.getElementById("trail-num").value;
-    document.getElementById("t-slider").value = document.getElementById("t-num").value;
-    document.getElementById("softening-slider").value = document.getElementById("softening-num").value;
-    document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value;
-    document.getElementById("drag-mult-slider").value = document.getElementById("drag-mult-num").value;
-    document.getElementById("drag-width-slider").value = document.getElementById("drag-width-num").value;
+    if (settings._sliders) {
+        document.getElementById("radius-slider").value = document.getElementById("radius-num").value;
+        document.getElementById("mass-slider").value = document.getElementById("mass-num").value;
+        document.getElementById("x-vel-slider").value = document.getElementById("x-vel-num").value;
+        document.getElementById("y-vel-slider").value = document.getElementById("y-vel-num").value;
+        document.getElementById("trail-slider").value = document.getElementById("trail-num").value;
+        document.getElementById("t-slider").value = document.getElementById("t-num").value;
+        document.getElementById("softening-slider").value = document.getElementById("softening-num").value;
+        document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value;
+        document.getElementById("drag-mult-slider").value = document.getElementById("drag-mult-num").value;
+        document.getElementById("drag-width-slider").value = document.getElementById("drag-width-num").value;
+    }
 
     syncSettings();
 }
@@ -72,17 +79,19 @@ function syncSettings() {
     settings.G = parseFloat(document.getElementById("G").value);
     settings.t = parseFloat(document.getElementById("t-num").value);
     settings.softening = parseFloat(document.getElementById("softening-num").value) * 1000;
-    if (document.getElementById("vel-cap-num").value != settings.velCap) {
-        settings.velCap = parseFloat(document.getElementById("vel-cap-num").value) * 1000;
-        // The minimum and maximum values for velocity slider and inputs are affected by changing the velocity cap
-        document.getElementById("x-vel-slider").min = document.getElementById("x-vel-num").min = -settings.velCap/1000;
-        document.getElementById("x-vel-slider").max = document.getElementById("x-vel-num").max = settings.velCap/1000;
-        document.getElementById("y-vel-slider").min = document.getElementById("y-vel-num").min = -settings.velCap/1000;
-        document.getElementById("y-vel-slider").max = document.getElementById("y-vel-num").max = settings.velCap/1000;
-
-        // Update velocity values
-        document.getElementById("x-vel-num").value = document.getElementById("x-vel-slider").value;
-        document.getElementById("y-vel-num").value = document.getElementById("y-vel-slider").value;
+    if (settings._sliders) {
+        if (document.getElementById("vel-cap-num").value != settings.velCap) {
+            settings.velCap = parseFloat(document.getElementById("vel-cap-num").value) * 1000;
+            // The minimum and maximum values for velocity slider and inputs are affected by changing the velocity cap
+            document.getElementById("x-vel-slider").min = -settings.velCap/1000;
+            document.getElementById("x-vel-slider").max = settings.velCap/1000;
+            document.getElementById("y-vel-slider").min = -settings.velCap/1000;
+            document.getElementById("y-vel-slider").max = settings.velCap/1000;
+    
+            // Update velocity values
+            document.getElementById("x-vel-num").value = document.getElementById("x-vel-slider").value;
+            document.getElementById("y-vel-num").value = document.getElementById("y-vel-slider").value;
+        }
     }
 
     settings.trail = parseFloat(document.getElementById("trail-num").value);
@@ -228,7 +237,7 @@ function createBodyMouse() {
 
 
 // Pause functionality
-pauseButton = document.getElementById("pause");
+const pauseButton = document.getElementById("pause");
 function pause() {
     if (settings._pause) {
         settings._pause = false;
@@ -293,7 +302,21 @@ function resetZoom() {
     resizeCanvas();
 }
 
+
 function resetPan() {
     translateLevel = {x:0, y:0};
     resizeCanvas();
+}
+
+
+const sliderButton = document.getElementById("disable-sliders");
+function disableSliders() {
+    if (settings._sliders) {
+        settings._sliders = false;
+        sliderButton.innerText = "Sliders: DISABLED";
+    }
+    else {
+        settings._sliders = true;
+        sliderButton.innerText = "Sliders: ENABLED";
+    }
 }
