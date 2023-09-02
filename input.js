@@ -1,15 +1,15 @@
 let settings = { // TODO: Make this look nice and have the default values stored here the same as html
-    radius : 1, // (km)
-    mass : 10**15, // (kg)
+    radius : 10 * (10 ** 3), // (m)
+    mass : 1000 * (10 ** 18), // (kg)
     colour : "#71aff8", // (hex)
     pos : {x:0, y:0}, // (m), from origin
     vel : {x:0, y:0}, // (m)
     G : 0.0000000000667428, // Gravitational constant, used in calculation of force
     t : 1, // Time interval between consecutive calculations
-    velCap : 5*(10**15),
-    softening : 1000, // Value to set distance if distance is less than
-    trail : 4,
-    canvasOpacity : 1/4,
+    velCap : 20 * (10 ** 3), // (m/s)
+    softening : 250, // Value to set distance if distance is less than
+    trail : 15,
+    canvasOpacity : 1/15,
     _pause : false,
     dragMultiplier : 25,
     dragWidth : 2,
@@ -37,7 +37,6 @@ function syncNum() {
     document.getElementById("trail-num").value = document.getElementById("trail-slider").value;
     document.getElementById("t-num").value = document.getElementById("t-slider").value;
     document.getElementById("softening-num").value = document.getElementById("softening-slider").value;
-    document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
     document.getElementById("vel-cap-num").value = document.getElementById("vel-cap-slider").value;
     document.getElementById("drag-mult-num").value = document.getElementById("drag-mult-slider").value;
     document.getElementById("drag-width-num").value = document.getElementById("drag-width-slider").value;
@@ -73,8 +72,19 @@ function syncSettings() {
     settings.G = parseFloat(document.getElementById("G").value);
     settings.t = parseFloat(document.getElementById("t-num").value);
     settings.softening = parseFloat(document.getElementById("softening-num").value) * 1000;
-    settings.velCap = parseFloat(document.getElementById("vel-cap-num").value) * 1000;
-    // TODO: Make changing velocity cap affect avaliable values for velocity inputs
+    if (document.getElementById("vel-cap-num").value != settings.velCap) {
+        settings.velCap = parseFloat(document.getElementById("vel-cap-num").value) * 1000;
+        // The minimum and maximum values for velocity slider and inputs are affected by changing the velocity cap
+        document.getElementById("x-vel-slider").min = document.getElementById("x-vel-num").min = -settings.velCap/1000;
+        document.getElementById("x-vel-slider").max = document.getElementById("x-vel-num").max = settings.velCap/1000;
+        document.getElementById("y-vel-slider").min = document.getElementById("y-vel-num").min = -settings.velCap/1000;
+        document.getElementById("y-vel-slider").max = document.getElementById("y-vel-num").max = settings.velCap/1000;
+
+        // Update velocity values
+        document.getElementById("x-vel-num").value = document.getElementById("x-vel-slider").value;
+        document.getElementById("y-vel-num").value = document.getElementById("y-vel-slider").value;
+    }
+
     settings.trail = parseFloat(document.getElementById("trail-num").value);
     if (settings.trail > 1) {
         settings.canvasOpacity = 1 / settings.trail;

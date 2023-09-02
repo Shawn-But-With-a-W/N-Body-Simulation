@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Orbital Simulation</title>
+    <title>N-Body Simulation</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='calc.js' defer></script>
@@ -26,20 +27,22 @@
         </p>
         <div id="body-settings">
             <div class="button-separator">
+                <button id="reset-body" onclick="resetBody()">Reset Body Settings</button>
                 <button id="new-body" onclick="createBodyButton()">Add body</button>
             </div>
 
+
             <div class="input-separator">
                 <p class="label">Radius</p>
-                <input type="range" min="1" max="100" value="10" step="0.01" class="slider body-slider" id="radius-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" id="radius-num" min="1" max="100" value="10" onchange="syncSlider()">
+                <input type="range" min="1" max="99" value="10" step="0.01" class="slider body-slider" id="radius-slider" oninput="syncNum()">
+                <input type="number" class="slider-num" id="radius-num" min="1" max="99" value="10" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Mass</p>
                 <input type="range" min="1" max="9999" value="1000" step="0.01" class="slider body-slider" id="mass-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" id="mass-num" min="1" max="1000" value="1000" onchange="syncSlider()">
+                <input type="number" class="slider-num" id="mass-num" min="1" max="9999" value="1000" onchange="syncSlider()">
                 <p class="unit">10^18 kg</p>
             </div>
 
@@ -81,10 +84,20 @@
         </p>
         <div id="general-settings">
             <div class="button-separator">
-                <button id="pause" onclick="pause()">Pause</button>
+                <button id="reset-general" onclick="resetGeneral()">Reset General Settings</button>
                 <button id="remove" onclick="remove()">Remove all Bodies</button>
-                <button id="reset" onclick="reset()">Default Values</button>
             </div>
+
+            <div class="button-separator">
+                <button id="reset-zoom" onclick="resetZoom()">Reset Camera Zoom</button>
+                <button id="reset-pan" onclick="resetPan()">Reset Camera Pan</button>
+            </div>
+
+            <div class="button-separator">
+                <button id="pause" onclick="pause()">Pause</button>
+            </div>
+
+            
 
             <div class="input-separator">
                 <p class="label">Trail Length</p>
@@ -95,7 +108,7 @@
             <div class="input-separator">
                 <p class="label">Time Step</p>
                 <input type="range" min="0.01" max="25" value="1" step="0.01" class="slider general-slider" id="t-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" min="0" max="100" value="1" id="t-num" onchange="syncSlider()">
+                <input type="number" class="slider-num" min="0" max="25" value="1" id="t-num" onchange="syncSlider()">
                 <p class="unit">s</p>
             </div>
         </div>
@@ -107,7 +120,13 @@
             <span class="material-symbols-outlined" id="advanced-icon">expand_more</span>
             Advanced Settings
         </p>
+
         <div id="advanced-settings">
+            <div class="button-separator">
+                <button id="reset-advanced" onclick="resetAdvanced()">Reset Advanced Settings</button>
+                <button id="invert-y" onclick="invertY()">Invert Y: OFF</button>
+            </div>
+
             <div class="input-separator">
                 <p class="label">G</p>
                 <input id="G" value="0.0000000000667428" onchange="syncSettings()">
@@ -116,15 +135,15 @@
 
             <div class="input-separator">
                 <p class="label">Softening Constant</p>
-                <input type="range" min="0" max="1000" value="100" step="0.01" class="slider advanced-slider" id="softening-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" id="softening-num" min="0" max="1000" value="100" onchange="syncSlider()">
+                <input type="range" min="0" max="9999" value="250" step="0.01" class="slider advanced-slider" id="softening-slider" oninput="syncNum()">
+                <input type="number" class="slider-num" id="softening-num" min="0" max="9999" value="100" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
                 <p class="label">Velocity Cap</p>
-                <input type="range" min="0" max="1000" value="20" step="0.01" class="slider advanced-slider" id="vel-cap-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" id="vel-cap-num" min="0" max="1000" value="20" onchange="syncSlider()">
+                <input type="range" min="0" max="999" value="20" step="0.01" class="slider advanced-slider" id="vel-cap-slider" oninput="syncNum()">
+                <input type="number" class="slider-num" id="vel-cap-num" min="0" max="999" value="20" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
@@ -136,8 +155,8 @@
 
             <div class="input-separator">
                 <p class="label">Drag Indicator Width</p>
-                <input type="range" min="0" max="25" value="2" step="1" class="slider advanced-slider" id="drag-width-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" id="drag-width-num" min="0" max="25" value="2" onchange="syncSlider()">
+                <input type="range" min="0" max="50" value="2" step="1" class="slider advanced-slider" id="drag-width-slider" oninput="syncNum()">
+                <input type="number" class="slider-num" id="drag-width-num" min="0" max="50" value="2" onchange="syncSlider()">
                 <p class="unit">px</p>
             </div>
 
@@ -154,6 +173,9 @@
 <!-- 
     TODO:
     - Finish restore default values button for each section
+    - Add restore viewport option
     - Add instruction display
     - Add tooltips
+    - Add disable slider option for unlimited inputs
+    - Add invert y in advanced options
 -->
