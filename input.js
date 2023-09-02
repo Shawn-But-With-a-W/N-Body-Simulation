@@ -281,6 +281,13 @@ function resetAdvanced() {
 }
 
 
+function resetAll() {
+    resetBody();
+    resetGeneral();
+    resetAdvanced();
+}
+
+
 function resetZoom() {
     zoomLevel = 0.001;
     resizeCanvas();
