@@ -139,7 +139,7 @@
             </div>
 
             <div class="input-separator">
-                <p class="label">Softening Constant</p>
+                <p class="label">Softening</p>
                 <input type="range" min="0" max="9999" value="250" step="0.01" class="slider advanced-slider" id="softening-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="softening-num" value="100" onchange="syncSlider()">
                 <p class="unit">km</p>
@@ -165,19 +165,28 @@
             </div>
 
             <div class="input-separator">
-                <p class="label">Drag Indicator Width</p>
+                <p class="label">Drag Width</p>
                 <input type="range" min="0" max="50" value="2" step="1" class="slider advanced-slider" id="drag-width-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="drag-width-num" value="2" onchange="syncSlider()">
                 <p class="unit">px</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Drag Indicator Colour</p>
+                <p class="label">Drag Colour</p>
                 <input id="drag-colour" value="#7a71f8" type="color" onchange="syncSettings()">
             </div>
 
         </div>
     </div>
+
+    <h1 id="hud">
+        <span id="title">N-Body Gravity Simulation</span><br>
+        Click to create bodies; drag to add velocity.<br>
+        Scroll to zoom; ctrl + mouse movement to pan.<br>
+        Hover on setting labels for more info.<br>
+        Full screen and reduce browser zoom for best experience.<br>
+        <span id="body-count">0</span> bodies
+    </h1>
 </body>
 </html>
 
