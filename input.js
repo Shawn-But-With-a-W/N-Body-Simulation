@@ -241,9 +241,41 @@ function pause() {
     }
 }
 
+
 // Removing all bodies
 function remove() {
     bodies = [];
 }
 
+
 // TODO: Restoring to default values
+function resetBody() {
+    settings.radius = 10 * (10 ** 3);
+    document.getElementById("radius-slider").value = document.getElementById("radius-num").value = 10;
+    settings.mass = 1000 * (10 ** 18);
+    document.getElementById("mass-slider").value = document.getElementById("mass-num").value = 1000;
+    settings.colour = document.getElementById("colour").value = "#71aff8";
+    settings.pos = {x:0, y:0};
+    document.getElementById("x-pos-num").value = document.getElementById("y-pos-num").value = 0;
+    settings.vel = {x:0, y:0};
+    document.getElementById("x-vel-slider").value = document.getElementById("x-vel-num").value = document.getElementById("y-vel-slider").value = document.getElementById("y-vel-num").value = 0;
+}
+
+
+function resetGeneral() {
+    settings.trail = document.getElementById("trail-slider").value = document.getElementById("trail-num").value = 15;
+    settings.canvasOpacity = 1/15;
+    settings.t = document.getElementById("t-slider").value = document.getElementById("t-num").value = 1; 
+}
+
+
+function resetAdvanced() {
+    settings.G = 0.0000000000667428;
+    document.getElementById("G").value = "0.0000000000667428";
+    settings.softening = document.getElementById("softening-slider").value = document.getElementById("softening-num").value = 250;
+    settings.velCap = 20 * (10 ** 3);
+    document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value = 20;
+    settings.dragMultiplier = document.getElementById("drag-mult-slider").value = document.getElementById("drag-mult-num").value = 25;
+    settings.dragWidth = document.getElementById("drag-width-slider").value = document.getElementById("drag-width-num").value = 2;
+    settings.dragColour = document.getElementById("drag-colour").value = "#7a71f8";
+}
