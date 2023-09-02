@@ -325,3 +325,15 @@ function disableSliders() {
         sliderButton.innerText = "Sliders: ENABLED";
     }
 }
+
+const invertButton = document.getElementById("invert-y");
+function invertY() {
+    if (settings._invertY) {
+        settings._invertY = false;
+        invertButton.innerText = "Invert Y: OFF";
+    }
+    else {
+        settings._invertY = true;
+        invertButton.innerText = "Invert Y: ON";
+    }
+}

@@ -36,7 +36,12 @@ window.addEventListener("mousemove", pan);
 function pan(event) {
     if (event.ctrlKey) {
         translateLevel.x += event.movementX;
-        translateLevel.y += event.movementY;
+        if (!settings._invertY) {
+            translateLevel.y += event.movementY;
+        }
+        else {
+            translateLevel.y -= event.movementY;
+        }
         resizeCanvas();
     }
 }
