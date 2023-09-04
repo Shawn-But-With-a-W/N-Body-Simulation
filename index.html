@@ -137,6 +137,10 @@
                 <button id="disable-sliders" onclick="disableSliders()">Sliders: ENABLED</button>
             </div>
 
+            <div class="button-separator">
+                <button id="clear" onlick="clear()">CLEAR ALL SETTINGS</button>
+            </div>
+
             <div class="input-separator">
                 <p class="label">G</p>
                 <input id="G" type="number" step="000000000000001" value="0.0000000000667428" onchange="syncSettings()">
@@ -152,7 +156,7 @@
 
             <div class="input-separator">
                 <p class="label">Velocity Cap</p>
-                <input type="range" min="0" max="999" value="20" step="0.01" class="slider advanced-slider" id="vel-cap-slider" oninput="syncNum()">
+                <input type="range" min="0" max="250" value="20" step="0.01" class="slider advanced-slider" id="vel-cap-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="vel-cap-num" value="20" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>

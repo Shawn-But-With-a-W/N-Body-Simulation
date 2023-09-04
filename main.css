@@ -3,6 +3,7 @@
 }
 
 body {
+    color: #e0e2e5;
     background-color: #1f2428;
     border: 0;
     padding: 0;
@@ -251,23 +252,40 @@ button {
     height: 3.5vh;
     width: 12vw;
     font-size: 1vw;
+    color: inherit;
     border: none;
     border-radius: 0.5vh;
     margin: 0 0.75vw;
+    background-color: #32353b;
+    transition: background-color 0.5s ease;
 }
 
 button:hover {
     cursor: pointer;
+    background-color: #585960;
 }
 
-div#body-settings button, div#body-settings input[type="number"] {
-    border: #71aff8 solid 0.1vw;
+div#body-settings button {
+    box-shadow: 0 0.1vh 0.8vh 0 #71aff8 inset;
 }
 
-div#general-settings button, div#general-settings input[type="number"]{
-    border: #71f8b9 solid 0.1vw;
+div#general-settings button {
+    box-shadow: 0 0.1vh 0.8vh 0 #71f8b9 inset;
 }
 
-div#advanced-settings button, div#advanced-settings input[type="number"], #G{
-    border: #ab71f8 solid 0.1vw;
+div#advanced-settings button {
+    box-shadow: 0 0.1vh 0.8vh 0 #ab71f8 inset;
+}
+
+div#body-settings input[type="number"] {
+    border: #71aff8 solid 0.1vh;
+    
+}
+
+div#general-settings input[type="number"]{
+    border: #71f8b9 solid 0.1vh;
+}
+
+div#advanced-settings input[type="number"], #G{
+    border: #ab71f8 solid 0.1vh;
 }
