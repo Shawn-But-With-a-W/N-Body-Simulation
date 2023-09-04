@@ -266,15 +266,15 @@ button:hover {
 }
 
 div#body-settings button {
-    box-shadow: 0 0.1vh 0.8vh 0 #71aff8 inset;
+    box-shadow: 0 0.05vh 0.6vh 0 #71aff8 inset;
 }
 
 div#general-settings button {
-    box-shadow: 0 0.1vh 0.8vh 0 #71f8b9 inset;
+    box-shadow: 0 0.05vh 0.6vh 0 #71f8b9 inset;
 }
 
 div#advanced-settings button {
-    box-shadow: 0 0.1vh 0.8vh 0 #ab71f8 inset;
+    box-shadow: 0 0.05vh 0.6vh 0 #ab71f8 inset;
 }
 
 div#body-settings input[type="number"] {
