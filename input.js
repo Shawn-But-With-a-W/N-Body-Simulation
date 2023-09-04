@@ -343,30 +343,58 @@ function invertY() {
     }
 }
 
-
+const hudButton = document.getElementById("display-hud");
+const hud = document.getElementById("hud");
 function displayHud() {
     if (settings._hud) {
         settings._hud = false;
-        document.getElementById("display-hud").innerText = "HUD: HIDDEN";
-        document.getElementById("hud").style.display = "none";
+        hudButton.innerText = "HUD: HIDDEN";
+        hud.style.display = "none";
     }
     else {
         settings._hud = true;
-        document.getElementById("display-hud").innerText = "HUD: SHOWN";
-        document.getElementById("hud").style.display = "block";
+        hudButton.innerText = "HUD: SHOWN";
+        hud.style.display = "block";
+    }
+}
+
+const bodyCountButton = document.getElementById("display-body-count");
+const bodyCount = document.getElementById("body-count");
+function displayBodyCount() {
+    if (settings._bodyCount) {
+        settings._bodyCount = false;
+        bodyCountButton.innerText = "Body Count: HIDDEN";
+        bodyCount.style.display = "none";
+    }
+    else {
+        settings._bodyCount = true;
+        bodyCountButton.innerText = "Body Count: SHOWN";
+        bodyCount.style.display = "block";
     }
 }
 
 
-function displayBodyCount() {
-    if (settings._bodyCount) {
-        settings._bodyCount = false;
-        document.getElementById("display-body-count").innerText = "Body Count: HIDDEN";
-        document.getElementById("body-count").style.display = "none";
+function reset() {
+    // Reset numerical and slider inputs
+    resetAll();
+
+    // Reset camera settings
+    zoomLevel = 0.001;
+    translateLevel = {x:0, y:0};
+    resizeCanvas();
+
+    // Reset flags
+    if (settings._pause) {
+        pause();
     }
-    else {
-        settings._bodyCount = true;
-        document.getElementById("display-body-count").innerText = "Body Count: SHOWN";
-        document.getElementById("body-count").style.display = "block";
-    }
+    settings._hud = true;
+    hudButton.innerText = "HUD: SHOWN";
+    hud.style.display = "block";
+    settings._bodyCount = true;
+    bodyCountButton.innerText = "Body Count: SHOWN";
+    bodyCount.style.display = "block";
+    settings._invertY = false;
+    invertButton.innerText = "Invert Y: OFF";
+    settings._sliders = true;
+    sliderButton.innerText = "Sliders: ENABLED";
 }

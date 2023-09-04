@@ -164,7 +164,7 @@ p.unit {
 }
 
 #G-unit {
-    font-size: 0.65vw;
+    font-size: 0.6vw;
     font-weight: 650;
 }
 
@@ -250,7 +250,7 @@ button {
     display: inline-block;
     vertical-align: middle;
     height: 3.5vh;
-    width: 12vw;
+    width: 13vw;
     font-size: 1vw;
     color: inherit;
     border: none;

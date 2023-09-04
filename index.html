@@ -79,7 +79,7 @@
         </div>
         
         <p class="dropdown" id="general-dropdown">
-            <span class="material-symbols-outlined" id="general-icon">expand_less</span>
+            <span class="material-symbols-outlined" id="general-icon">expand_more</span>
             General Settings
         </p>
         <div id="general-settings">
@@ -138,12 +138,12 @@
             </div>
 
             <div class="button-separator">
-                <button id="clear" onlick="clear()">CLEAR ALL SETTINGS</button>
+                <button id="clear" onclick="reset()"><strong>CLEAR ALL SETTINGS</strong></button>
             </div>
 
             <div class="input-separator">
                 <p class="label">G</p>
-                <input id="G" type="number" step="000000000000001" value="0.0000000000667428" onchange="syncSettings()">
+                <input id="G" type="number" step="0.00000000000001" value="0.0000000000667428" onchange="syncSettings()">
                 <p class="unit" id="G-unit">m^3 kg^-2 s^-2</p>
             </div>
 
@@ -202,6 +202,6 @@
 
 <!-- 
     TODO:
-    - Add option to remove hud in general settings
+    - Add clear all button
     - Add tooltips
 -->
