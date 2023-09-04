@@ -17,7 +17,12 @@ class Body {
         this.draw();
 
         // Update the body count in the HUD
-        document.getElementById("body-count").innerText = `${bodies.length} bodies`;
+        if (bodies.length == 1) {
+            bodyCount.innerText = "1 body";
+        }
+        else {
+            bodyCount.innerText = `${bodies.length} bodies`;
+        }
 
     }
 
@@ -40,13 +45,13 @@ class Body {
                 const dy = this.pos.y - body.pos.y;                
 
                 // Finding the magnitude and angle from horizontal
-                let dSqrd = dx ** 2 + dy ** 2;
+                let d = Math.sqrt(dx ** 2 + dy ** 2);
                 // Limiting the minum distance between objects
-                if (dSqrd < settings.softening) {
-                    dSqrd = settings.softening;
+                if (d < settings.softening) {
+                    d = settings.softening;
                 }
 
-                const force = (settings.G * this.mass * body.mass) / (dSqrd);
+                const force = (settings.G * this.mass * body.mass) / (d ** 2);
                 let theta;
 
                 let tanRatio = Math.abs(dy/dx);

@@ -33,45 +33,69 @@
 
 
             <div class="input-separator">
-                <p class="label">Radius</p>
+                <p class="label">Radius<span class="tooltip">Radius of a new body created by mouse or "Add Body" button</span></p>
                 <input type="range" min="1" max="99" value="10" step="0.01" class="slider body-slider" id="radius-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="radius-num" value="10" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Mass</p>
+                <p class="label">Mass<span class="tooltip">Mass of a new body created by mouse or "Add Body" button</span></p>
                 <input type="range" min="1" max="9999" value="1000" step="0.01" class="slider body-slider" id="mass-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="mass-num" value="1000" onchange="syncSlider()">
                 <p class="unit">10^18 kg</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Colour</p>
+                <p class="label">Colour <span class="tooltip">Colour of a new body created by mouse or "Add Body" button</span></p>
                 <input id="colour" value="#71aff8" type="color" onchange="syncSettings()">
             </div>
 
             <div class="input-separator">
-                <p class="label">X-Coord</p>
+                <p class="label">
+                    X-Coord
+                    <span class="tooltip">
+                        x-coordinate of a new body created by "Add Body" button.<br>
+                        Positive values are to the right, negative values are to the left.
+                    </span>
+                </p>
                 <input type="number" id="x-pos-num" value="0" onchange="syncSettings()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Y-Coord</p>
+                <p class="label">
+                    Y-Coord
+                    <span class="tooltip">
+                        x-coordinate of a new body created by "Add Body" button.<br>
+                        Positive values are upwards, negative values are downwards.
+                    </span>
+                </p>
                 <input type="number" id="y-pos-num" value="0" onchange="syncSettings()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">X-Velocity</p>
+                <p class="label">
+                    X-Velocity
+                    <span class="tooltip">
+                        Horizontal velocity of a new body created by "Add Body" button.<br>
+                        Moves right for positive values, moves left for negative values.
+                    </span>
+                </p>
                 <input type="range" min="-20" max="20" value="0" step="0.01" class="slider body-slider" id="x-vel-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="x-vel-num" value="0" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Y-Velocity</p>
+                <p class="label">
+                    Y-Velocity
+                    <span class="tooltip">
+                        Vertical velocity of a new body created by "Add Body" button.<br>
+                        Moves up for positive values, moves down for negative values.
+                    </span>
+                </p>
                 <input type="range" min="-20" max="20" value="0" step="0.01" class="slider body-slider" id="y-vel-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="y-vel-num" value="0" onchange="syncSlider()">
                 <p class="unit">km/s</p>
@@ -102,16 +126,28 @@
                 <button id="pause" onclick="pause()">Pause</button>
             </div>
 
-            
 
             <div class="input-separator">
-                <p class="label">Trail Length</p>
+                <p class="label">
+                    Trail Length
+                    <span class="tooltip">
+                        Multiplier for the length of trails of bodies.<br>
+                        The higher the value, the longer the trail.<br>
+                        Set to 0 for no trails.
+                    </span>
+                </p>
                 <input type="range" min="0" max="100" value="15" class="slider general-slider" id="trail-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" value="15" id="trail-num" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
-                <p class="label">Time Step</p>
+                <p class="label">
+                    Time Step
+                    <span class="tooltip">
+                        The time between each recalculation of bodies' positions.<br>
+                        High values may result in rounding inaccuracies.
+                    </span>
+                </p>
                 <input type="range" min="0.01" max="25" value="1" step="0.01" class="slider general-slider" id="t-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" value="1" id="t-num" onchange="syncSlider()">
                 <p class="unit">s</p>
@@ -133,8 +169,19 @@
             </div>
 
             <div class="button-separator">
-                <button id="invert-y" onclick="invertY()">Invert Y: OFF</button>
-                <button id="disable-sliders" onclick="disableSliders()">Sliders: ENABLED</button>
+                <button id="invert-y" onclick="invertY()">
+                    Invert Y: OFF
+                    <span class="button-tooltip">
+                        Inverts the vertical movement when panning the camera.
+                    </span>
+                </button>
+
+                <button id="disable-sliders" onclick="disableSliders()">
+                    Sliders: ENABLED
+                    <span class="button-tooltip">
+                        Sliders can be disabled to remove restrictions on the minimum and maximum values of input fields.
+                    </span>
+                </button>
             </div>
 
             <div class="button-separator">
@@ -142,46 +189,87 @@
             </div>
 
             <div class="input-separator">
-                <p class="label">G</p>
+                <p class="label">
+                    G
+                    <span class="tooltip">
+                        The gravitational constant used in the calculation of gravitational forces.<br>
+                        The higher its value, the stronger the gravitational forces between objects.
+                    </span>
+                </p>
                 <input id="G" type="number" step="0.00000000000001" value="0.0000000000667428" onchange="syncSettings()">
                 <p class="unit" id="G-unit">m^3 kg^-2 s^-2</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Softening</p>
-                <input type="range" min="0" max="9999" value="250" step="0.01" class="slider advanced-slider" id="softening-slider" oninput="syncNum()">
+                <p class="label">
+                    Softening
+                    <span class="tooltip">
+                        A restriction on the minimum distance possible between two bodies.<br>
+                        Used to reduce forces between objects at close proximity.<br>
+                        Higher values may cause inaccuracies.
+                    </span>
+                </p>
+                <input type="range" min="0" max="99" value="10" step="0.01" class="slider advanced-slider" id="softening-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="softening-num" value="100" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Velocity Cap</p>
+                <p class="label">
+                    Velocity Cap
+                    <span class="tooltip">
+                        The maximum horizontal and vertical speed a body can travel at.
+                    </span>
+                </p>
                 <input type="range" min="0" max="250" value="20" step="0.01" class="slider advanced-slider" id="vel-cap-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="vel-cap-num" value="20" onchange="syncSlider()">
                 <p class="unit">km/s</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Scroll Multiplier</p>
+                <p class="label">
+                    Scroll Multiplier
+                    <span class="tooltip">
+                        Multiplier for zoom sensitivity.<br>
+                        Set to negative values to invert scrolling direction.<br>
+                        The futher the value is from 0, the more sensitive zooming in/out is.
+                    </span>
+                </p>
                 <input type="range" min="-100" max="100" value="5" step="0.01" class="slider advanced-slider" id="scroll-mult-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="scroll-mult-num" value="5" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
-                <p class="label">Drag Multiplier</p>
+                <p class="label">
+                    Drag Multiplier
+                    <span class="tooltip">
+                        Multiplier for the velocity of a new body created by mouse drag.<br>
+                        The higher the value, the greater the velocity for the same length of drag.
+                    </span>
+                </p>
                 <input type="range" min="0" max="100" value="25" step="0.01" class="slider advanced-slider" id="drag-mult-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="drag-mult-num" value="25" onchange="syncSlider()">
             </div>
 
             <div class="input-separator">
-                <p class="label">Drag Width</p>
+                <p class="label">
+                    Drag Width
+                    <span class="tooltip">
+                        The width of the drag indicator for adding velocity to a new body by mouse drag.
+                    </span>
+                </p>
                 <input type="range" min="0" max="50" value="2" step="1" class="slider advanced-slider" id="drag-width-slider" oninput="syncNum()">
                 <input type="number" class="slider-num" id="drag-width-num" value="2" onchange="syncSlider()">
                 <p class="unit">px</p>
             </div>
 
             <div class="input-separator">
-                <p class="label">Drag Colour</p>
+                <p class="label">
+                    Drag Colour
+                    <span class="tooltip">
+                        The colour of the drag indicator for adding velocity to a new body by mouse drag.
+                    </span>
+                </p>
                 <input id="drag-colour" value="#7a71f8" type="color" onchange="syncSettings()">
             </div>
 
