@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>N-Body Simulation</title>
+    <title>N-Body Gravity Simulation</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='calc.js' defer></script>
@@ -28,7 +28,7 @@
         <div id="body-settings">
             <div class="button-separator">
                 <button id="reset-body" onclick="resetBody()">Reset Body Values</button>
-                <button id="new-body" onclick="createBodyButton()">Add body</button>
+                <button id="new-body" onclick="createBodyButton()">Add Body</button>
             </div>
 
 
@@ -91,6 +91,11 @@
             <div class="button-separator">
                 <button id="reset-zoom" onclick="resetZoom()">Reset Camera Zoom</button>
                 <button id="reset-pan" onclick="resetPan()">Reset Camera Pan</button>
+            </div>
+
+            <div class="button-separator">
+                <button id="display-hud" onclick="displayHud()">HUD: SHOWN</button>
+                <button id="display-body-count" onclick="displayBodyCount()">Body Count: SHOWN</button>
             </div>
 
             <div class="button-separator">
@@ -184,14 +189,15 @@
         Click to create bodies; drag to add velocity.<br>
         Scroll to zoom; ctrl + mouse movement to pan.<br>
         Hover on setting labels for more info.<br>
-        Full screen and reduce browser zoom for best experience.<br>
-        <span id="body-count">0</span> bodies
+        F11 and reduce browser zoom for the best experience.<br>
     </h1>
+
+    <span id="body-count">0 bodies</span>
 </body>
 </html>
 
 <!-- 
     TODO:
-    - Add instruction display
+    - Add option to remove hud in general settings
     - Add tooltips
 -->

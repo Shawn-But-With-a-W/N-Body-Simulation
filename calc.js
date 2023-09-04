@@ -15,6 +15,10 @@ class Body {
 
         bodies.push(this);
         this.draw();
+
+        // Update the body count in the HUD
+        document.getElementById("body-count").innerText = `${bodies.length} bodies`;
+
     }
 
     draw() {

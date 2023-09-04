@@ -30,6 +30,7 @@ canvas {
 }
 
 /* Information display */
+
 #hud {
     position: absolute;
     top: 75%;
@@ -37,11 +38,15 @@ canvas {
     font-size: 1.15vw;
     color: #e0e2e5;
     font-weight: 525;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+}
+
+#body-count {
+    position: absolute;
+    top: 96%;
+    left: 0;
+    font-size: 1.15vw;
+    color: #e0e2e5;
+    font-weight: 525;
 }
 
 #title {
@@ -82,7 +87,7 @@ canvas {
 }
 
 #general-settings {
-    display: block;
+    display: none;
 }
 
 #advanced-settings {
@@ -128,7 +133,7 @@ span {
     text-align: center;
     height: fit-content;
     border: 0.1vh black solid;
-    padding: 1vh 0;
+    padding: 0.5vh 0;
 }
 
 p {
@@ -233,7 +238,7 @@ input {
     font-size: 1vw;
     width: 18.3vw;
     text-align: center;
-    height: 3.5vh;
+    height: 3.2vh;
     margin: 0;
     border: none;
     border-radius: 0.5vh;
@@ -248,7 +253,7 @@ button {
     font-size: 1vw;
     border: none;
     border-radius: 0.5vh;
-    margin: 0 0.5vw;
+    margin: 0 0.75vw;
 }
 
 button:hover {

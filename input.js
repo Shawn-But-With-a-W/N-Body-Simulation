@@ -16,6 +16,8 @@ let settings = { // TODO: Make this look nice and have the default values stored
     dragColour : "#7a71f8",
 
     _pause : false,
+    _hud : true,
+    _bodyCount : true,
     _invertY : false,
     _sliders : true,
 };
@@ -116,7 +118,7 @@ function syncSettings() {
 
 visibility = {
     body : true,
-    general : true,
+    general : false,
     advanced : false
 };
 
@@ -259,6 +261,7 @@ function pause() {
 // Removing all bodies
 function remove() {
     bodies = [];
+    document.getElementById("body-count").innerText = "0 bodies";
 }
 
 
@@ -289,6 +292,8 @@ function resetAdvanced() {
     settings.softening = document.getElementById("softening-slider").value = document.getElementById("softening-num").value = 250;
     settings.velCap = 20 * (10 ** 3);
     document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value = 20;
+    settings.scrollMultiplier = 5 * (10 ** -7);
+    document.getElementById("scroll-mult-slider").value = document.getElementById("scroll-mult-num").value = 5;
     settings.dragMultiplier = document.getElementById("drag-mult-slider").value = document.getElementById("drag-mult-num").value = 25;
     settings.dragWidth = document.getElementById("drag-width-slider").value = document.getElementById("drag-width-num").value = 2;
     settings.dragColour = document.getElementById("drag-colour").value = "#7a71f8";
@@ -335,5 +340,33 @@ function invertY() {
     else {
         settings._invertY = true;
         invertButton.innerText = "Invert Y: ON";
+    }
+}
+
+
+function displayHud() {
+    if (settings._hud) {
+        settings._hud = false;
+        document.getElementById("display-hud").innerText = "HUD: HIDDEN";
+        document.getElementById("hud").style.display = "none";
+    }
+    else {
+        settings._hud = true;
+        document.getElementById("display-hud").innerText = "HUD: SHOWN";
+        document.getElementById("hud").style.display = "block";
+    }
+}
+
+
+function displayBodyCount() {
+    if (settings._bodyCount) {
+        settings._bodyCount = false;
+        document.getElementById("display-body-count").innerText = "Body Count: HIDDEN";
+        document.getElementById("body-count").style.display = "none";
+    }
+    else {
+        settings._bodyCount = true;
+        document.getElementById("display-body-count").innerText = "Body Count: SHOWN";
+        document.getElementById("body-count").style.display = "block";
     }
 }
