@@ -1,2 +1,3 @@
 # N-Body-Simulation
-Submission for SDD assessment task 3
+
+Inspired greatly by [lemmingapex's simulation](https://github.com/lemmingapex/N-bodyGravitySimulation)
