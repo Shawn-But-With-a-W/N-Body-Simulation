@@ -252,9 +252,11 @@ function pause() {
     if (settings._pause) {
         settings._pause = false;
         requestAnimationFrame(update); // Starts the simulation again by calling a recursive function
+        pauseButton.innerText = "Pause";
     }
     else {
         settings._pause = true;
+        pauseButton.innerText = "Resume";
     }
 }
 
