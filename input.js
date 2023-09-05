@@ -189,6 +189,7 @@ function createBodyButton() {
 overlayCanvas.addEventListener("mousedown", startDrag);
 overlayCanvas.addEventListener("mousemove", drag);
 overlayCanvas.addEventListener("mouseup", createBodyMouse);
+overlayCanvas.addEventListener('contextmenu', event => event.preventDefault());
 
 let _drag = false;
 let initialPos = {};
