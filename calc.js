@@ -38,7 +38,7 @@ class Body {
         this.force.x = 0;
         this.force.y = 0;
 
-        for (let body of bodies) {
+        for (const body of bodies) {
             // Gravitational force only applied by bodies other than the current body itself
             if (body != this) {
                 const dx = this.pos.x - body.pos.x;

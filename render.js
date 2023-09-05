@@ -27,7 +27,7 @@ function refreshCanvas() {
 
 function calc() {
     // Update values and redraw the bodies
-    for (let body of bodies) {
+    for (const body of bodies) {
         body.updateForce();
         body.updateAcc();
         body.updateVel();
@@ -36,7 +36,7 @@ function calc() {
     }
 
     // Change the previous and current position values to be identical after the force calculation (which is based on distance, and by extension position) to not intefere 
-    for (let body of bodies) {
+    for (const body of bodies) {
         body.updateCalcPos();
     }
 }

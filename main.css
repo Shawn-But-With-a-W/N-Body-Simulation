@@ -232,7 +232,6 @@ input.advanced-slider::-webkit-slider-thumb {
 
 input.slider-num {
     width: 5vw;
-    margin-left: 1vw;
 }
 
 input {
@@ -241,6 +240,7 @@ input {
     text-align: center;
     height: 3.2vh;
     margin: 0;
+    margin-left: 1vw;
     border: none;
     border-radius: 0.5vh;
     vertical-align: middle;

@@ -260,11 +260,13 @@ function pause() {
 // Removing all bodies
 function remove() {
     bodies = [];
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "black";
+    ctx.fillRect(-(canvas.width/2 + translateLevel.x) / zoomLevel, -(canvas.height/2 - translateLevel.y) / zoomLevel, canvas.width/zoomLevel, canvas.height/zoomLevel);
     document.getElementById("body-count").innerText = "0 bodies";
 }
 
 
-// TODO: Restoring to default values
 function resetBody() {
     settings.radius = 10 * (10 ** 3);
     document.getElementById("radius-slider").value = document.getElementById("radius-num").value = 10;
@@ -320,14 +322,28 @@ function resetPan() {
 
 
 const sliderButton = document.getElementById("disable-sliders");
+const sliders = document.getElementsByClassName("slider");
+const sliderNums = document.getElementsByClassName("slider-num");
 function disableSliders() {
     if (settings._sliders) {
         settings._sliders = false;
         sliderButton.innerText = "Sliders: DISABLED";
+        for (const slider of sliders) {
+            slider.style.display = "none";
+        }
+        for (const sliderNum of sliderNums) {
+            sliderNum.style.width = "18.3vw"
+        }
     }
     else {
         settings._sliders = true;
         sliderButton.innerText = "Sliders: ENABLED";
+        for (const slider of sliders) {
+            slider.style.display = "inline-block";
+        }
+        for (const sliderNum of sliderNums) {
+            sliderNum.style.width = "5vw"
+        }
     }
 }
 
@@ -374,6 +390,7 @@ function displayBodyCount() {
 }
 
 
+// Clearing all settings
 function reset() {
     // Reset numerical and slider inputs
     resetAll();
@@ -385,7 +402,8 @@ function reset() {
 
     // Reset flags
     if (settings._pause) {
-        pause();
+        settings._pause = false;
+        requestAnimationFrame(update);
     }
     settings._hud = true;
     hudButton.innerText = "HUD: SHOWN";
@@ -395,6 +413,15 @@ function reset() {
     bodyCount.style.display = "block";
     settings._invertY = false;
     invertButton.innerText = "Invert Y: OFF";
-    settings._sliders = true;
-    sliderButton.innerText = "Sliders: ENABLED";
+    
+    if (!settings._sliders) {
+        settings._sliders = true;
+        sliderButton.innerText = "Sliders: ENABLED";
+        for (const slider of sliders) {
+            slider.style.display = "inline-block";
+        }
+        for (const sliderNum of sliderNums) {
+            sliderNum.style.width = "5vw"
+        }
+    }
 }
