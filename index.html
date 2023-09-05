@@ -6,6 +6,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>N-Body Gravity Simulation</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- Importing styling and scripts -->
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='calc.js' defer></script>
     <script src='render.js' defer></script>
@@ -16,21 +18,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
-<body>    
-    <canvas id="canvas" width="1920" height="1080">No canvas avaliable</canvas>
-    <canvas id="overlay-canvas" width="1920" height="1080">No canvas avaliable</canvas>
+<body>
+    <!-- The main canvas -->
+    <canvas id="canvas" width="1920" height="1080">No canvas avaliable D: try switching browsers!</canvas>
+    <!-- Canvas used for drag indicator only -->
+    <canvas id="overlay-canvas" width="1920" height="1080">No canvas avaliable D: try switching browsers!</canvas>
     
+    <!-- Inputs -->
+
     <div id="input-panel-right">
         <p class="dropdown" id="body-dropdown">
             <span class="material-symbols-outlined" id="body-icon">expand_less</span>
             New Body Settings
         </p>
+
         <div id="body-settings">
             <div class="button-separator">
                 <button id="reset-body" onclick="resetBody()">Reset Body Values</button>
                 <button id="new-body" onclick="createBodyButton()">Add Body</button>
             </div>
-
 
             <div class="input-separator">
                 <p class="label">Radius<span class="tooltip">Radius of a new body created by mouse or "Add Body" button</span></p>
@@ -102,10 +108,12 @@
             </div>
         </div>
         
+
         <p class="dropdown" id="general-dropdown">
             <span class="material-symbols-outlined" id="general-icon">expand_more</span>
             General Settings
         </p>
+
         <div id="general-settings">
             <div class="button-separator">
                 <button id="reset-general" onclick="resetGeneral()">Reset General Values</button>
@@ -125,7 +133,6 @@
             <div class="button-separator">
                 <button id="pause" onclick="pause()">Pause</button>
             </div>
-
 
             <div class="input-separator">
                 <p class="label">
@@ -155,8 +162,8 @@
         </div>
     </div>
 
+
     <div id="input-panel-left">
-        
         <p class="dropdown" id="advanced-dropdown">
             <span class="material-symbols-outlined" id="advanced-icon">expand_more</span>
             Advanced Settings
@@ -210,7 +217,7 @@
                     </span>
                 </p>
                 <input type="range" min="0" max="99" value="10" step="0.01" class="slider advanced-slider" id="softening-slider" oninput="syncNum()">
-                <input type="number" class="slider-num" id="softening-num" value="100" onchange="syncSlider()">
+                <input type="number" class="slider-num" id="softening-num" value="10" onchange="syncSlider()">
                 <p class="unit">km</p>
             </div>
 
@@ -273,10 +280,10 @@
                 </p>
                 <input id="drag-colour" value="#7a71f8" type="color" onchange="syncSettings()">
             </div>
-
         </div>
     </div>
 
+    <!-- Instruction display -->
     <h1 id="hud">
         <span id="title">N-Body Gravity Simulation</span><br>
         Click to create bodies; drag to add velocity.<br>
@@ -285,12 +292,7 @@
         F11 and reduce browser zoom for the best experience.<br>
     </h1>
 
+    <!-- Number of bodies being calculated -->
     <span id="body-count">0 bodies</span>
 </body>
 </html>
-
-<!-- 
-    TODO:
-    - Add clear all button
-    - Add tooltips
--->

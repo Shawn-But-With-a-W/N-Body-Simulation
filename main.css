@@ -1,10 +1,11 @@
+/* For consistent styling */
+
 * {
     box-sizing: border-box; 
 }
 
 body {
     color: #e0e2e5;
-    background-color: #1f2428;
     border: 0;
     padding: 0;
     margin: 0;  
@@ -48,6 +49,7 @@ canvas {
     font-size: 1.15vw;
     color: #e0e2e5;
     font-weight: 525;
+    vertical-align: initial;
 }
 
 #title {
@@ -55,33 +57,7 @@ canvas {
     font-weight: 700;
 }
 
-#body-count {
-    vertical-align: initial;
-}
-
-/* Inputs */
-/* Breaks at higher zoom levels since the viewport dimensions are scuffed */
-
-#input-panel-right {
-    display: block;
-    position: fixed;
-    width: fit-content;
-    height: fit-content;
-    top: 0;
-    right: 0;
-    background-color: #24292e90;
-}
-
-#input-panel-left {
-    display: block;
-    position: fixed;
-    width: fit-content;
-    height: fit-content;
-    top: 0;
-    left: 0;
-    background-color: #24292e90;
-}
-
+/* Dropdowns */
 
 #body-settings {
     display: block;
@@ -116,12 +92,34 @@ canvas {
     border-left: 0.5vw #ab71f8 solid;
 }
 
-.dropdown:hover {
+.dropdown:hover, #colour, #drag-colour {
     cursor: pointer;
 }
 
 span {
     vertical-align: middle;
+}
+
+/* Input Panels*/
+
+#input-panel-right {
+    display: block;
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    top: 0;
+    right: 0;
+    background-color: #24292e90;
+}
+
+#input-panel-left {
+    display: block;
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    top: 0;
+    left: 0;
+    background-color: #24292e90;
 }
 
 .input-separator {
@@ -137,11 +135,12 @@ span {
     padding: 0.5vh 0;
 }
 
+/* Labels and units */
+
 p {
     display: inline-block;
     vertical-align: middle;
     font-size: 1vw;
-    color: #e0e2e5;
     font-weight: 550;
 }
 
@@ -167,6 +166,8 @@ p.unit {
     font-size: 0.6vw;
     font-weight: 650;
 }
+
+/* Sliders */
 
 .slider {
     -webkit-appearance: none;
@@ -194,7 +195,6 @@ input.general-slider::-moz-range-progress {
 input.advanced-slider::-moz-range-progress {
     background-color: #ab71f8; 
 }
-
 
 input.slider::-moz-range-track {  
     background-color: #353639;
@@ -230,6 +230,8 @@ input.advanced-slider::-webkit-slider-thumb {
     box-shadow: -10vw 0 0 10vw #ab71f8;
 }
 
+/* Numerical input fields */
+
 input.slider-num {
     width: 5vw;
 }
@@ -245,6 +247,20 @@ input {
     border-radius: 0.5vh;
     vertical-align: middle;
 }
+
+div#body-settings input[type="number"] {
+    border: #71aff8 solid 0.1vh;
+}
+
+div#general-settings input[type="number"]{
+    border: #71f8b9 solid 0.1vh;
+}
+
+div#advanced-settings input[type="number"], #G{
+    border: #ab71f8 solid 0.1vh;
+}
+
+/* Buttons */
 
 button {
     display: inline-block;
@@ -275,19 +291,6 @@ div#general-settings button {
 
 div#advanced-settings button {
     box-shadow: 0 0.05vh 0.6vh 0 #ab71f8;
-}
-
-div#body-settings input[type="number"] {
-    border: #71aff8 solid 0.1vh;
-    
-}
-
-div#general-settings input[type="number"]{
-    border: #71f8b9 solid 0.1vh;
-}
-
-div#advanced-settings input[type="number"], #G{
-    border: #ab71f8 solid 0.1vh;
 }
 
 /* Tooltips */
