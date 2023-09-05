@@ -64,7 +64,7 @@ canvas {
 }
 
 #general-settings {
-    display: none;
+    display: block;
 }
 
 #advanced-settings {

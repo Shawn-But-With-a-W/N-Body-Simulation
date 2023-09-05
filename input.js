@@ -118,7 +118,7 @@ function syncSettings() {
 
 visibility = {
     body : true,
-    general : false,
+    general : true,
     advanced : false
 };
 
