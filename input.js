@@ -7,7 +7,7 @@ let settings = { // TODO: Make this look nice and have the default values stored
     G : 0.0000000000667428, // Gravitational constant, used in calculation of force
     t : 1, // Time interval between consecutive calculations
     velCap : 20 * (10 ** 3), // (m/s)
-    softening : 250, // Value to set distance if distance is less than
+    softening : 10, // Value to set distance if distance is less than
     trail : 15,
     canvasOpacity : 1/15,
     scrollMultiplier : 5 * (10 ** -7),
@@ -249,12 +249,10 @@ const pauseButton = document.getElementById("pause");
 function pause() {
     if (settings._pause) {
         settings._pause = false;
-        pauseButton.innerText = "Pause";
         requestAnimationFrame(update);
     }
     else {
         settings._pause = true;
-        pauseButton.innerText = "Resume";
     }
 }
 
@@ -290,7 +288,8 @@ function resetGeneral() {
 function resetAdvanced() {
     settings.G = 0.0000000000667428;
     document.getElementById("G").value = "0.0000000000667428";
-    settings.softening = document.getElementById("softening-slider").value = document.getElementById("softening-num").value = 250;
+    settings.softening = 10 * (10 ** 3);
+     document.getElementById("softening-slider").value = document.getElementById("softening-num").value = 10;
     settings.velCap = 20 * (10 ** 3);
     document.getElementById("vel-cap-slider").value = document.getElementById("vel-cap-num").value = 20;
     settings.scrollMultiplier = 5 * (10 ** -7);
